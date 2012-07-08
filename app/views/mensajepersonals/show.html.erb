@@ -1,0 +1,33 @@
+<% if get_usuario==@mensajepersonal.remitente || get_usuario==@mensajepersonal.destinatario%>
+    <h1><div id="titulo">Mensaje</div></h1>
+    <p>
+      <b>De:</b>
+      <%= @mensajepersonal.remitente.username %>
+    </p>
+
+    <p>
+      <b>Para:</b>
+      <%= @mensajepersonal.destinatario.username %>
+    </p>
+
+    <p>
+      <b>Mensaje:</b>
+      <%= @mensajepersonal.titulo %><br/>
+      <div id="cuerpoPM"><%= sanitizar_bbcode(@mensajepersonal.cuerpo) %></div>
+    </p>
+
+    <p>
+
+    </p>
+    <% if get_usuario==@mensajepersonal.remitente%>
+        <%= link_to 'Responder', new_mensajepersonal_url(:destinatario_id => @mensajepersonal.destinatario) %>
+    <% else %>
+        <%= link_to 'Responder', new_mensajepersonal_url(:destinatario_id => @mensajepersonal.remitente) %>
+    <% end %>
+<% else %>
+    <h1><div id="titulo">No tienes acceso a este mensaje</div></h1>
+<% end %>
+
+<br/><br/>
+<%= link_to 'Mensajes enviados', enviados_path%> |
+<%= link_to 'Bandeja de entrada', recibidos_path %>

@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  database: rforum_development
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: root
+
+test:
+  adapter: postgresql
+  database: rforum_test
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: root
+
+production:
+  adapter: postgresql
+  database: rforum_production
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: root

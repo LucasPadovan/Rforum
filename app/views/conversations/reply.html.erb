@@ -1,0 +1,11 @@
+<h1><div id="titulo">Respuesta para -:<%= @conversation.title %>:-</div></h1>
+
+<%= link_to 'Panel Principal', boards_path %>
+<% unless @board.padre == 1 %>
+    <% board= Board.find(@board.padre)%>
+    &gt; <%= link_to board.title, board%>
+<% end %>
+&gt; <%= link_to @board.title, @board%>
+&gt; <%= link_to @conversation.title, board_conversation_path(:board_id=>@conversation.board, :id=>@conversation) %><br/><br/>
+
+<%= render 'reply_form' %><br/><br/>

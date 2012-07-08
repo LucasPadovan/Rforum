@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  remitente: 
+  destinatario: 
+  titulo: 
+  cuerpo: 
+
+two:
+  remitente: 
+  destinatario: 
+  titulo: 
+  cuerpo: 

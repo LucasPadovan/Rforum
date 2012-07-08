@@ -1,0 +1,85 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :username, "Nombre de usuario" %><br />
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password, "Contraseña" %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmacion de la contraseña" %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>  <div class="field">
+    <%= f.label :apellido %><br />
+    <%= f.text_field :apellido %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fechanac, "Fecha de nacimiento" %><br />
+    <%= f.date_select :fechanac, :start_year => 1930, :end_year=> Time.now.year %>
+  </div>
+  <div class="field">
+    <%= f.label :numtel, "Numero telefonico" %><br />
+    <%= f.text_field :numtel %>
+  </div>
+  <div class="field">
+    <%= f.label :pais, "País" %><br />
+    <%= f.text_field :pais %>
+  </div>
+  <div class="field">
+    <%= f.label :provincia, "Provincia" %><br />
+    <%= f.text_field :provincia %>
+  </div>
+
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <%= f.text_field :avatar %>
+  </div>
+  <div class="field">
+    <%= f.label :firma %><br />
+    <div id="barrabbcode"><span id="youtube">Youtube</span> | <span id="imagen">Imágen</span> | <span id="centrar">Centrar</span> |
+      <span id="spoiler">Spoiler</span> | <span id="url">URL</span></div>
+    <%= f.text_area(:firma, :size=>"90x10") %>
+  </div>
+  <div class="field">
+    <%= f.label :pagweb, "Pagina web" %><br />
+    <%= f.text_field :pagweb %>
+  </div>
+  <div class="field">
+    <%= f.label :notify_by_email, "Recibir notificaciones por correo" %><br />
+    <%= f.check_box :notify_by_email %>
+  </div>
+
+  <% if es_administrador %>
+  <div class="field">
+    <%= f.label :rango, "Rango" %><br />
+    <%= f.text_field :rango %>
+  </div><% end %>
+
+  <div class="actions">
+    <%= f.submit(:value => "Aceptar") %>
+  </div>
+<% end %>

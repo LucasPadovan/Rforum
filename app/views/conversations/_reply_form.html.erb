@@ -1,0 +1,33 @@
+<%= form_for(@comment, :url => reply_board_conversation_url(:board_id=>@board, :id=>@conversation)) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this reply from being saved:</h2>
+
+      <ul>
+      <% comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div id="barrabbcode"><span id="youtube">Youtube</span> | <span id="imagen">Imágen</span> | <span id="centrar">Centrar</span> |
+      <span id="spoiler">Spoiler</span> | <span id="url">URL</span></div>
+<div class="field">
+  <%= f.text_area(:body, :size => "90x20")%>
+</div>
+<div class="actions">
+  <%= f.submit(:value => "Enviar respuesta") %>
+</div><br/>
+<% end %>
+Ultimos comentarios:
+  <% conv =@comment.conversation %>
+<% veces=0 %>
+
+  <% conv.comments.reverse_each do |com| %>
+<div id="foros">
+  <% veces+=1 %>
+  <strong><%= com.user.username %></strong> dijo:
+  <%= sanitize(sanitizar_bbcode(com.body)) %><br/>
+</div>
+  <% break if veces==8 %>
+  <% end %>

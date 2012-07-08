@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<h1><div id="titulo"><%= @board.title %></div></h1>
+
+<%= link_to 'Panel Principal', boards_path %>
+<% unless @board.padre == 1 %>
+    <% board= Board.find(@board.padre)%>
+    &gt; <%= link_to board.title, board%>
+<% end %>
+&gt; <%= link_to @board.title, @board%><br/><br/>
+
+<% hijos=Board.find_all_by_padre(@board.id) %>
+<% unless hijos.count == 0 %>
+<div id="forosHijoEnBoardShow">
+    Subforos: <% hijos.each do |h| %>
+        |<%= link_to h.title, h %>|
+    <% end %>
+</div><br/>
+<% end %>
+
+
+<table id="foros">
+  <tr id="cabecera">
+    <th>Tema</th>
+    <th>Resumen</th>
+    <th>Comentarios</th>
+    <th>Ultimo comentario</th>
+    <th></th>
+  </tr>
+  <% @board.conversations.each do |conversation| %>
+  <tr id="<%= cycle('postPar', 'postImpar') %>">
+    <td><%= link_to conversation.title, board_conversation_path(:board_id=>@board, :id=>conversation) %>
+    <div id="creadoPor">por <%= conversation.user.username %></div></td>
+    <td><%= normalizar_texto(conversation.comments.first.body, 40) %></td>
+    <td><%= conversation.comments.count-1 %></td>
+    <td>
+        <% if conversation.comments.count >= 2 %>
+        <%= conversation.comments.find(:last).user.username %> dijo: <%= link_to(normalizar_texto(conversation.comments.find(:last).body, 40),
+                                                                                 board_conversation_path(:board_id=>@board, :id=>conversation)+
+                                                                                         ultima_pagina(conversation)+"#"+conversation.comments.last.id.to_s) %>
+              <br/>A las <%= conversation.comments.find(:last).created_at.to_s(:detallada) %>
+        <% else %>
+          Sin respuesta todavia, se el primero en comentar!
+        <% end %>
+    </td>
+    <td>
+      <% if es_administrador %><%= link_to 'Destroy', board_conversation_path(conversation.board.id, conversation.id),
+                                             confirm: 'Are you sure?', method: :delete %><% end %>
+    </td>
+  </tr>
+  <% end %>
+</table><br/>
+<% if es_administrador %> <%= link_to 'Editar', edit_board_path(@board) %> | <% end %>
+<%= link_to 'Nuevo tema', new_board_conversation_url(@board) %>

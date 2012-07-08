@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nombre: MyString
+  duracion: 2012-02-07 14:32:24
+  detalle: MyString
+  peso: 1.5
+  tipo: MyString
+  url: MyString
+  serie_id: 1
+
+two:
+  nombre: MyString
+  duracion: 2012-02-07 14:32:24
+  detalle: MyString
+  peso: 1.5
+  tipo: MyString
+  url: MyString
+  serie_id: 1

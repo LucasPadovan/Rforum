@@ -1,0 +1,76 @@
+Features
+--------
+
+* Non-regex based (except for the split)
+* Handles deep nesting of tags
+* Generates good html even from bad input
+* Easy configuration to add new tags
+
+* Tags supported:
+
+p, b, i, u, s, del, ins, ol, ul, li, dl, dt, dd, quote, code, spoiler, url, img
+
+Usage
+--------
+
+    BBCoder.new(text).to_html
+    # or
+    "[p]my string[/p]".bbcode_to_html
+
+Install
+-------
+
+    gem install bbcoder
+
+
+Configuration
+-----------------------
+
+    BBCoder.configure do
+      tag :b, :as => :strong
+
+      tag :ul
+      tag :ol
+      tag :li, :parents => [:ol, :ul]
+
+      tag :img, :match => /^.*(png|bmp|jpg|gif)$/ do
+        %(<a href="#{content}"><img src="#{content}" /></a>)
+      end
+
+      tag :code do
+        <<-EOS
+    <div class="bbcode-code #{meta}">
+      <pre>#{content}</pre>
+    </div>
+        EOS
+      end
+
+      tag :url do
+        if meta.nil? || meta.empty?
+          %(<a href="#{content}">#{content}</a>)
+        else
+          %(<a href="#{meta}">#{content}</a>)
+        end
+      end
+    end
+
+
+Options for #tag
+
+* :as (symbol) -> use this as the html element ([b] becomes strong)
+* :match (regex) -> convert this tag and its content to html only if the content matches the regex
+* :parents ([symbol]) -> ignore this tag if there is no open tag that matches its parents
+
+
+When you pass a block to #tag it is expecting you to return a string.  You have two variables available to your block:
+
+* meta -> Everything after the '=' in the opening tag (with [quote="Legendary"] meta returns '"Legendary"' and with [quote] meta returns nil)
+* content -> Everything between the two tags (with [b]strong arm[/b] content returns 'strong arm')
+
+
+Author
+------
+
+Original author: John "asceth" Long
+
+

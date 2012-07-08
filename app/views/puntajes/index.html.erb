@@ -1,0 +1,27 @@
+<h1>Listing puntajes</h1>
+
+<table>
+  <tr>
+    <th>Comment</th>
+    <th>User</th>
+    <th>Valor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @puntajes.each do |puntaje| %>
+  <tr>
+    <td><%= puntaje.comment_id %></td>
+    <td><%= puntaje.user_id %></td>
+    <td><%= puntaje.valor %></td>
+    <td><%= link_to 'Show', puntaje %></td>
+    <td><%= link_to 'Edit', edit_puntaje_path(puntaje) %></td>
+    <td><%= link_to 'Destroy', puntaje, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Puntaje', new_puntaje_path %>

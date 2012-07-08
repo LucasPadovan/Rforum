@@ -1,0 +1,33 @@
+<h1><div id="titulo">Listando las conversaciones</div></h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Titulo</th>
+    <th>Foro</th>
+    <th>Usuario</th>
+    <th>Cuerpo</th>
+    <th>Puntaje</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @conversations.each do |conversation| %>
+  <tr>
+    <td><%= conversation.id %></td>
+    <td><%= conversation.title %></td>
+    <td><%= conversation.board.title %></td>
+    <td><%= conversation.user.username %></td>
+    <td><%= normalizar_texto(conversation.cuerpo,60) %></td>
+    <td><%= conversation.puntaje %></td>
+    <td><%#= link_to 'Ver', conversation %></td>
+    <td><%#= link_to 'Editar', edit_board_conversation_path(conversation) %></td>
+    <td><%#= link_to 'Destruir', conversation, confirm: 'Estas seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Conversation', new_board_conversation_path %>

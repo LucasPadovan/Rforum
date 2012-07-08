@@ -1,0 +1,111 @@
+<%= notice %>
+<h1><div id="cabecera"> Panel principal</div></h1>
+<% if current_user %>
+
+<% @principales = Board.principales %>
+<table id="foros">
+<% @principales.each do |board| %>
+  <tr id="principal">
+    <td><%= link_to board.title, board %><div id="categoria"><%= board.descripcion %>
+      <br/>Categoría: <%= board.categoria %></div></td>
+
+
+    <% if board.conversations.exists? %>
+        <td id="tyc">
+          <% ntemas= board.conversations.count %>
+          <% ncoment= -ntemas%>
+          <% ultimaconv = board.conversations.find(:last)%>
+          <% @fechaultcoment=ultimaconv.updated_at %>
+          <% @comentario=ultimaconv.comments.find(:last) %>
+          <% board.conversations.each do |conv| %>
+              <% ncoment+=conv.comments.count %>
+              <% comentario=conv.comments.find(:last) %>
+              <% if @fechaultcoment.to_time <= comentario.created_at.to_time %>
+                  <% @comentario=comentario %>
+                  <% @fechaultcoment=comentario.created_at %>
+              <% end %>
+          <% end %>
+          <%= ntemas %>/<%= ncoment %>
+        </td>
+
+        <td id="ultcoment">
+          <%= link_to(@comentario.user.username, @comentario.user) %> dijo: <%= normalizar_texto(@comentario.body, 40) %><br/>
+          En: <%= link_to @comentario.conversation.title, board_conversation_path(:board_id=>board,
+                                                                                  :id=>@comentario.conversation)+
+                ultima_pagina(@comentario.conversation)+"#"+@comentario.id.to_s %><br/>
+          A las: <%= @fechaultcoment.to_s(:detallada) %>
+        </td>
+    <% else %>
+        <td id="tyc">0/0</td>
+        <td id="ultcoment">Sin comentarios todavia</td>
+    <% end %>
+
+    <td>
+        <% if es_administrador %>
+            <%= link_to 'Edit', edit_board_path(board) %><br/>
+            <%= link_to 'Destroy', board, confirm: 'Are you sure?', method: :delete %><br/>
+        <% end %>
+    </td>
+  </tr>
+  <tr id="separadorForos">
+    <td></td>
+    <td></td>
+    <td></td>
+    <% if es_administrador %>
+    <td></td>
+    <% end %>
+  </tr>
+  <% @subforos = Board.foros(board.id) %>
+  <% @subforos.each do |subforo| %>
+  <tr id="subforo">
+    <td><%= link_to subforo.title, subforo %><div id="categoriasubforo"><%= subforo.descripcion %>
+      <br/>Categoría: <%= subforo.categoria %></div></td>
+
+
+        <% if subforo.conversations.exists? %>
+        <td id="tyc">
+          <% ntemas= subforo.conversations.count %>
+          <% ncoment= -ntemas%>
+          <% ultimaconv = subforo.conversations.find(:last)%>
+          <% @fechaultcoment=ultimaconv.updated_at %>
+          <% @comentario=ultimaconv.comments.find(:last) %>
+          <% subforo.conversations.each do |conv| %>
+              <% ncoment+=conv.comments.count %>
+              <% comentario=conv.comments.find(:last) %>
+              <% if @fechaultcoment.to_time <= comentario.created_at.to_time %>
+                  <% @comentario=comentario %>
+                  <% @fechaultcoment=comentario.created_at %>
+              <% end %>
+          <% end %>
+          <%= ntemas %>/<%= ncoment %>
+        </td>
+
+        <td id="ultcoment">
+          <%= link_to @comentario.user.username, @comentario.user %> dijo: <%= normalizar_texto(@comentario.body, 40) %><br/>
+          En: <%= link_to @comentario.conversation.title, board_conversation_path(:board_id=>board,
+                                                                                  :id=>@comentario.conversation)+
+                ultima_pagina(@comentario.conversation)+"#"+@comentario.id.to_s %><br/>
+          A las: <%= @fechaultcoment.to_s(:detallada) %>
+        </td>
+    <% else %>
+        <td id="tyc">0/0</td>
+        <td id="ultcoment">Sin comentarios todavia</td>
+    <% end %>
+
+    <td>
+      <% if es_administrador %>
+        <%= link_to 'Edit', edit_board_path(subforo) %><br/>
+        <%= link_to 'Destroy', subforo, confirm: 'Are you sure?', method: :delete %><br/> <% end %>
+     </td>
+  </tr>
+
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<% if es_administrador %><%= link_to 'Nuevo Foro', new_board_path %><% end %>
+<% else %>
+    Por favor logueate o registrate para ver el contenido
+<% end %>

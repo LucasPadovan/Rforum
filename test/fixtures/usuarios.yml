@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  username: MyString
+  email: MyString
+  crypted_password: MyString
+  password_salt: MyString
+  persistence_token: MyString
+  apellido: MyString
+  avatar: MyString
+  fechanac: 2011-12-04
+  firma: MyString
+  numtel: MyString
+  nombre: MyString
+  pagweb: MyString
+  pais: MyString
+  provincia: MyString
+  puntuacion: 1
+  rango: MyString
+
+two:
+  username: MyString
+  email: MyString
+  crypted_password: MyString
+  password_salt: MyString
+  persistence_token: MyString
+  apellido: MyString
+  avatar: MyString
+  fechanac: 2011-12-04
+  firma: MyString
+  numtel: MyString
+  nombre: MyString
+  pagweb: MyString
+  pais: MyString
+  provincia: MyString
+  puntuacion: 1
+  rango: MyString

@@ -1,0 +1,29 @@
+<%= form_for(@puntaje) do |f| %>
+  <% if @puntaje.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@puntaje.errors.count, "error") %> prohibited this puntaje from being saved:</h2>
+
+      <ul>
+      <% @puntaje.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :comment_id %><br />
+    <%= f.number_field :comment_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :valor %><br />
+    <%= f.number_field :valor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

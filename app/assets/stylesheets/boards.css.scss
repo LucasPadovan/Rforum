@@ -1,0 +1,134 @@
+// Place all the styles related to the boards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+#centro a{
+    padding:3px;
+    text-decoration:none;
+    color: #000000;
+    border-radius:10px;
+
+    transition: background-color .25s, color .15s;
+    -webkit-transition: background-color .25s,color .15s;
+    -moz-transition: background-color .25s,color .15s;
+    -o-transition: background-color .25s,color .15s;
+}
+#centro a:hover{
+    border-radius: 10px;
+    background-color: #630007;
+    color: #ffffff;
+
+    transition: background-color .25s,color .15s;
+    -webkit-transition: background-color .25s,color .15s;
+    -moz-transition: background-color .25s,color .15s;
+    -o-transition: background-color .25s,color .15s;
+}
+
+#foros{
+    width: 100%;
+    border: 3px solid #9c0007;
+    border-collapse: collapse;
+    border-radius: 15px;
+    padding:5px;
+    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
+}
+
+#foros div#encabezado{
+    background-color: #9CE28E;
+}
+
+#foros #cabecera{
+  color:#ffffff;
+}
+
+#principal{
+    background-color: #9c0007;
+    border-top: 2px solid #9c0007;
+}
+#principal td{
+    color: #000000;
+    text-transform:capitalize;
+    font-size: 15px;
+    margin:2px;
+ }
+ #principal td a{
+    font-weight: bold;
+    border-radius:10px;
+    transition: background-color .25s, color .15s;
+    -webkit-transition: background-color .25s, color .15s;
+    -moz-transition: background-color .25s, color .15s;
+    -o-transition: background-color .25s, color .15s;
+ }
+ #principal td a:visited{
+    color:#000000;
+ }
+ #principal td a:hover{
+    color: #9c0007;
+    background-color:#ffffff;
+    border-radius:10px;
+
+    transition: background-color .25s, color .15s;
+    -webkit-transition: background-color .25s, color .15s;
+    -moz-transition: background-color .25s, color .15s;
+    -o-transition: background-color .25s, color .15s;
+ }
+
+
+#subforo{
+    border-bottom: 1px solid #9c0007;
+}
+#subforo a{
+    font-weight: bold;
+    }
+#categoria{
+    font-size: 9px;
+    font-style:italic;
+}
+#categoriasubforo{
+    font-size: 9px;
+    font-style:italic;
+}
+
+
+tr#cabecera{
+    background-color: #9c0007;
+    text-align:center;
+}
+
+div #creadoPor{
+    font-size: 9px;
+    font-style:italic;
+}
+tr#postPar{
+    background-color: #ffa490;
+    text-align:center;
+}
+tr#postPar a, tr#postImpar a{
+    font-weight: bold;
+}
+tr#postImpar{
+    background-color: #ffc1ad;
+    text-align:center;
+}
+td#tyc{
+    text-align:center;
+    font-size: 11px;
+}
+
+td#ultcoment{
+    text-align:center;
+    font-size: 10px;
+    text-transform:none;
+}
+
+div#forosHijoEnBoardShow a{
+    background-color: #ffc1ad;
+    border-radius: 10px;
+}
+#separadorForos{
+    border: .5px solid #630007;
+    background-color: #630007;
+}
+

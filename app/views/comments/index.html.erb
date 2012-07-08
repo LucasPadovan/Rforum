@@ -1,0 +1,28 @@
+<h1><div id="titulo">Comentarios</div></h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Usuario</th>
+    <th>Conversacion</th>
+    <th>Cuerpo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= comment.id %></td>
+    <td><%= comment.user.username %></td>
+    <td><%= comment.conversation.title %></td>
+    <td><%= normalizar_texto(comment.body, 50)%></td>
+    <td><%= link_to 'Ver', comment %></td>
+    <td><%= link_to 'Editar', edit_comment_path(comment) %></td>
+    <td><%= link_to 'Destruir', comment, confirm: '¿Estas seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<p><%= will_paginate @comments %></p>

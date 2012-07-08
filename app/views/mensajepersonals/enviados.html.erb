@@ -1,0 +1,17 @@
+<h1><div id="titulo">Mensajes enviados de <%= get_usuario.username %></div></h1>
+<% if @enviados.exists? %>
+<table id="foros">
+<tr id="principal"><td></td><td></td><td></td></tr>
+<% @enviados.each do |mensajepersonal| %>
+  <tr id="lineaPm">
+    <td>Mensaje:<%= link_to normalizar_texto(mensajepersonal.titulo,100), mensajepersonal %><br/>
+    Para:-------:<%= mensajepersonal.destinatario.username %>:-------:</td>
+    <td>A las: <%= mensajepersonal.created_at.to_s(:detallada) %></td>
+    <td><%= link_to 'Eliminar', mensajepersonal, confirm: 'Estás seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+  <tr id="principal"><td></td><td></td><td></td></tr>
+</table>
+<% else %>
+    Aún no has enviado ningun mensaje.
+<% end %>

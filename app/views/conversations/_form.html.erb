@@ -1,0 +1,29 @@
+<%= form_for(@conversation, :url => board_conversations_path) do |f| %>
+  <% if @conversation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
+
+      <ul>
+      <% @conversation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, "Titulo:" %>
+    <%= f.text_field :title %>
+  </div>
+  <div id="barrabbcode"><span id="youtube">Youtube</span> | <span id="imagen">Imágen</span> | <span id="centrar">Centrar</span> |
+      <span id="spoiler">Spoiler</span> | <span id="url">URL</span></div>
+  <%= fields_for(@comment) do |cf| %>
+        <div class="field">
+          <%= cf.text_area(:body, :size=>"90x20") %>
+        </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit(:value => "Crear tema") %>
+  </div>
+<% end %>

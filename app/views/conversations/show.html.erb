@@ -1,0 +1,102 @@
+<% if notice.present? %><p id="notice"><%= notice %></p><% end %>
+<h1><div id="titulo"><%= @conversation.title %></div></h1>
+<%= link_to 'Panel Principal', boards_path %>
+
+<% unless @conversation.board.padre == 1 %>
+    <% board= Board.find(@conversation.board.padre)%>
+    &gt; <%= link_to board.title, board%>
+<% end %>
+
+&gt; <%= link_to @conversation.board.title, @conversation.board %><br/>
+<p><%= will_paginate @otroscomentarios %></p>
+  <% @primercomentario%>
+  <div id="primercomentario">
+      <dl id="usuarioEnPrimerComentario"><span><a name="<%= @primercomentario.id.to_s %>"></a></span>
+          <img src="<%= @primercomentario.user.avatar %>"><br/>
+          <%= @primercomentario.user.username %><br/>
+          <%= @primercomentario.user.rango %><br/>Puntuación: <%= @primercomentario.user.puntuacion %><br/>
+          Registrado: <%= @primercomentario.user.created_at.to_s(:simple) %><br/><br/>
+        <% unless @primercomentario.user == get_usuario%>
+            <%= link_to "Enviar mensaje", new_mensajepersonal_path(:destinatario_id => @primercomentario.user.id) %>
+        <% end %>
+      </dl>
+
+      <div id="cuerpoPrimerComentario">
+          <%= sanitizar_bbcode(@primercomentario.body) %>
+
+          <div id="votacion">
+            <ul id="votos">
+            <% unless get_usuario.voted_for? @primercomentario %>
+                <li id="id_contenedor_link_voto_m">
+                  <%= link_to '', votar_encuesta_path(:comentario_id => @primercomentario), :remote => true %>
+                </li>
+                <li id="id_contenedor_link_voto_-">
+                  <%= link_to '', votar_encuesta_path(:comentario_id => @primercomentario, :negativo => true), :remote => true %>
+                </li>
+            <% else %>
+            <% end %>
+                <li><span id="totalVotos<%= @primercomentario.id.to_s %>"><%= @primercomentario.likes.size-@primercomentario.dislikes.size %></span></li>
+            </ul>
+          </div>
+
+          <div id="firmaEnComentario">
+            <%=  sanitizar_bbcode(@primercomentario.user.firma) %>
+          </div><br/>
+          <div id="fecha">Creado: <%= @primercomentario.created_at.to_s(:detallada) %>
+            <% if es_administrador || @primercomentario.user==get_usuario %>
+                | <%= link_to "Editar", edit_comment_path(@primercomentario) %>
+            <% end %>
+          </div>
+      </div>
+
+  </div>
+
+
+  <% @otroscomentarios.each do |comment| %>
+    <% unless comment == @primercomentario %>
+  <div id="<%= cycle('comentariospar', 'comentariosimpar') %>">
+    <dl id="usuarioEnComentario"><span><a name="<%= comment.id.to_s %>" ></a></span>
+      <img src="<%= comment.user.avatar %>"><br/>
+      <%= comment.user.username %><br/>
+      <%= comment.user.rango %><br/>Puntuación: <%= comment.user.puntuacion %><br/>
+      Registrado: <%= comment.user.created_at.to_s(:simple) %><br/><br/>
+    <% unless comment.user == get_usuario%>
+        <%= link_to "Enviar mensaje", new_mensajepersonal_url(:destinatario_id => comment.user) %>
+    <% end %>
+    </dl>
+
+    <div id="cuerpoComentario">
+      <%=  sanitizar_bbcode(comment.body) %>
+
+      <div id="votacion2">
+        <ul id="votos">
+        <% unless get_usuario.voted_for? comment %>
+            <li id="id_contenedor_link_voto_m">
+              <%= link_to '', votar_encuesta_path(:comentario_id => comment), :remote => true %>
+            </li>
+            <li id="id_contenedor_link_voto_-">
+              <%= link_to '', votar_encuesta_path(:comentario_id => comment, :negativo => true), :remote => true %>
+            </li>
+        <% else %>
+        <% end %>
+            <li><span id="totalVotos<%= comment.id.to_s %>"><%= comment.likes.size-comment.dislikes.size %></span></li>
+        </ul>
+      </div>
+
+      <div id="firmaEnComentario">
+        <%= sanitizar_bbcode(comment.user.firma) %>
+      </div>
+      <div id="fecharespuesta">Respuesta realizada a las: <%= comment.created_at.to_s(:detallada) %>
+        <% if es_administrador || comment.user==get_usuario %>
+            | <%= link_to "Editar", edit_comment_path(comment) %>
+        <% end %><br/>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+<%#= link_to 'edit', edit_board_conversation_path(:board_id=>@board, :id=>@conversation) %>
+<%= link_to 'Responder', reply_board_conversation_url(:board_id=>@board, :id=>@conversation)%> |
+<%= link_to  @conversation.board.title, @conversation.board%>
+
+<p><%= will_paginate @otroscomentarios %></p>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nombre: MyString
+  nombre2: MyString
+  nombre3: MyString
+  sinopsis: MyText
+  noepisodios: 1
+  fechainicio: 2012-02-07
+  fechafin: 2012-02-07
+  estudio: MyString
+
+two:
+  nombre: MyString
+  nombre2: MyString
+  nombre3: MyString
+  sinopsis: MyText
+  noepisodios: 1
+  fechainicio: 2012-02-07
+  fechafin: 2012-02-07
+  estudio: MyString

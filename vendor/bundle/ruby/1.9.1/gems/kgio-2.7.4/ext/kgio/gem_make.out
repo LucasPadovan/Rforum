@@ -1,0 +1,33 @@
+C:/Ruby192/bin/ruby.exe extconf.rb 
+checking for CLOCK_MONOTONIC in time.h... no
+checking for CLOCK_MONOTONIC() in time.h... no
+checking for clockid_t in time.h... no
+checking for clock_gettime() in -lrt... no
+checking for t_open() in -lnsl... no
+checking for socket() in -lsocket... no
+checking for poll() in poll.h... no
+checking for getaddrinfo() in sys/types.h,sys/socket.h,netdb.h... no
+getaddrinfo required
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.
+
+Provided configuration options:
+	--with-opt-dir
+	--without-opt-dir
+	--with-opt-include
+	--without-opt-include=${opt-dir}/include
+	--with-opt-lib
+	--without-opt-lib=${opt-dir}/lib
+	--with-make-prog
+	--without-make-prog
+	--srcdir=.
+	--curdir
+	--ruby=C:/Ruby192/bin/ruby
+	--with-rtlib
+	--without-rtlib
+	--with-nsllib
+	--without-nsllib
+	--with-socketlib
+	--without-socketlib

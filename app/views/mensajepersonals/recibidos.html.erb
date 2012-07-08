@@ -1,0 +1,17 @@
+<h1><div id="titulo">Bandeja de entrada de <%= get_usuario.username %></div></h1>
+<% if @recibidos.exists? %>
+<table id="foros">
+<tr id="principal"><td></td><td></td><td></td></tr>
+<% @recibidos.each do |mensajepersonal| %>
+  <tr id="lineaPm">
+    <td>Mensaje:<%= link_to normalizar_texto(mensajepersonal.titulo,100), mensajepersonal %><br/>
+    De:-------:<%= mensajepersonal.remitente.username %>:-------:</td>
+    <td>A las: <%= mensajepersonal.created_at.to_s(:detallada) %></td>
+    <td><%= link_to 'Eliminar', mensajepersonal, confirm: 'Estás seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+  <tr id="principal"><td></td><td></td><td></td></tr>
+</table>
+<% else %>
+    Aún no has recibido ningun mensaje.
+<% end %>

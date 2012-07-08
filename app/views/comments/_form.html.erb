@@ -1,0 +1,26 @@
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    Comentario de: <%= link_to @comment.user.username, @comment.user %><br/>
+    En la conversacion: <%= link_to(@comment.conversation.title, board_conversation_path(:board_id=>@comment.conversation.board,
+                                                                 :id=>@comment.conversation))%><br/>
+
+  <div id="barrabbcode"><span id="youtube">Youtube</span> | <span id="imagen">Imágen</span> | <span id="centrar">Centrar</span> |
+      <span id="spoiler">Spoiler</span> | <span id="url">URL</span></div>
+  <div class="field">
+    <%= f.text_area(:body, :size=>"90x20") %>
+  </div>
+  <div class="actions">
+    <%= f.submit(:value => "Actualizar comentario") %>
+  </div>
+<% end %>

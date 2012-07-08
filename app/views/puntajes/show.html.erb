@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Comment:</b>
+  <%= @puntaje.comment_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @puntaje.user_id %>
+</p>
+
+<p>
+  <b>Valor:</b>
+  <%= @puntaje.valor %>
+</p>
+
+
+<%= link_to 'Edit', edit_puntaje_path(@puntaje) %> |
+<%= link_to 'Back', puntajes_path %>
