@@ -6,7 +6,7 @@ class Notifier < ActionMailer::Base
 
     mail(
       bcc: User.notificable.map(&:email), # Implementar suscripciones
-      subject: "Hicieron un comentario en [#{comment.conversation.title}]"
+      subject: "CursosCetem: comentaron en [#{comment.conversation.title}]"
     )
   end
 end

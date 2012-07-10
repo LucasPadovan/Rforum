@@ -1,5 +1,11 @@
 <h3><%= @comment.user %> hizo este comentario:</h3>
 
-<p>
-  <blockquote><%= simple_format @comment.body %></blockquote>
-</p>
+<blockquote><%= simple_format @comment.body %></blockquote>
+
+En la conversación:
+<%= link_to( @comment.conversation.title,
+             'http://cursoscetem.herokuapp.com/' + board_conversation_path( :board_id => @comment.conversation.board, :id => @comment.conversation) ) %>
+<br/>
+Recibes este correo porque tienes activada la casilla de notificaciones en tu cuenta en el foro de Cursos del Cetem.
+<%= link_to( 'Foro de Cursos del Cetem', 'http://cursoscetem.herokuapp.com' ) %>
+Estamos trabajando en el sistema de subscripciones, disculpa las molestias.
