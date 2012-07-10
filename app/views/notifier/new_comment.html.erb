@@ -4,8 +4,7 @@
 
 En la conversación:
 <%= link_to( @comment.conversation.title,
-             board_conversation_path( :board_id => @comment.conversation.board, :id => @comment.conversation) +
-                     ultima_pagina( @comment.conversation) + "#" + @comment.id.to_s ) %>
+             board_conversation_path( :board_id => @comment.conversation.board, :id => @comment.conversation) ) %>
 <br/>
 Recibes este correo porque tienes activada la casilla de notificaciones en tu cuenta en el foro de Cursos del Cetem.
 <%= link_to( 'Foro de Cursos del Cetem', homepage_url ) %>
