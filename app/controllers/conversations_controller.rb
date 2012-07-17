@@ -95,6 +95,7 @@ class ConversationsController < ApplicationController
   #GET /conversations/reply
   def reply
     @conversation=Conversation.find(params[:id])
+    @conversation.update_attributes(:updated_at => Time.now)
     @comment = @conversation.comments.build
 
     respond_to do |format|
