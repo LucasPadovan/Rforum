@@ -43,15 +43,15 @@
 <div id="izquierda">
     <div id="ultimoscomentarios">
       <span>Últimos comentarios:</span>
-      <% ultimoscoments=ultimos_comentarios %>
-          <% ultimoscoments.each do |t| %>
-            <div id="lineaUltCom"><%= link_to(t.user.username, t.user) %> dijo:
-              <%= normalizar_texto(t.body, 40) %><br/>En:
-              <%= link_to(t.conversation.title, board_conversation_path(:board_id=>t.conversation.board,
-                                                                        :id=>t.conversation)+ultima_pagina(t.conversation)+"#"+t.id.to_s) %>
-              <br/>Hace <%= time_ago_in_words(t.created_at) %>
-            </div>
-          <% end %>
+      <% Comment.ultimos_comentarios.each do |comment| %>
+        <div id="lineaUltCom"><%= link_to(comment.user.username, comment.user) %> dijo:
+          <%= normalizar_texto(comment.body, 40) %><br/>En:
+          <%= link_to( comment.conversation.title, board_conversation_path( :board_id => comment.conversation.board,
+                                                                    :id => comment.conversation ) +
+                  comment.conversation.ultima_pagina + "#" + comment.id.to_s ) %>
+          <br/>Hace <%= time_ago_in_words(comment.created_at) %>
+        </div>
+      <% end %>
     </div>
 </div>
 
@@ -63,7 +63,7 @@
       <img src="<%= @usuario.avatar.html_safe if @usuario.avatar.present? %>"><br/><br/>
       <%= @usuario.rango %><br/>
       Comentarios: <%= @usuario.comments.count %><br/>
-      Registrado: <%= @usuario.created_at.to_s(:simple) %><br/><br/>
+      Registrado: <%= @usuario.created_at.to_s( :simple ) %><br/><br/>
       <%= link_to 'Bandeja de entrada', recibidos_path %> (<%= User.recibidosnuevos(@usuario) %>)<br/>
       <%= link_to 'Mensajes enviados', enviados_path%> <br/><br/>
 

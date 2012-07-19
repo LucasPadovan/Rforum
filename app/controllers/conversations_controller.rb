@@ -94,8 +94,8 @@ class ConversationsController < ApplicationController
 
   #GET /conversations/reply
   def reply
-    @conversation=Conversation.find(params[:id])
-    @conversation.update_attributes(:updated_at => Time.now)
+    @conversation = Conversation.find(params[:id])
+    @conversation.update_attributes( :updated_at => Time.now )
     @comment = @conversation.comments.build
 
     respond_to do |format|
@@ -120,8 +120,8 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       if current_user && @comment.save
-        format.html {redirect_to(board_conversation_path(:board_id=>@conversation.board, :id=>@conversation)+u_pagina(@conversation)+"#fondo",
-                                 :notice =>"Tu respuesta fue agregada")}
+        format.html {redirect_to( board_conversation_path( :board_id => @conversation.board, :id => @conversation) +
+                                      @conversation.ultima_pagina + "#fondo", :notice => "Tu respuesta fue agregada" )}
       else
         format.html {render :action => "new"}
       end
@@ -139,22 +139,5 @@ class ConversationsController < ApplicationController
       redirect_to(boards_path, :notice => "Especifique un foro valido")
     end
   end
-
-def u_pagina(c)
-  numerocomentarios = c.comments.count
-  retorno=""
-  Integer n = 0
-  if numerocomentarios > 15
-    unless numerocomentarios%15 == 0
-      n = 1
-    end
-
-    n += numerocomentarios/15
-    n = String(n)
-    retorno="?page="+n
-  else
-    retorno
-  end
-end
 
 end

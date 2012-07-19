@@ -13,20 +13,30 @@ class Comment < ActiveRecord::Base
     Notifier.new_comment(self).deliver
   end
 
-  def self.ultimo(idconversation)
-    Comment.where('conversation_id = ?', idconversation)
-  end
+  class << self
 
-  def self.positivo(comment,user)
-    unless user.voted_for? comment
-       comment.vote :voter => user
+    def ultimos_comentarios
+      comments = []
+      Conversation.order('updated_at DESC').first(10).map { |conversation| comments << conversation.comments.last }
+      comments
     end
-  end
 
-  def self.negativo(comment,user)
-    unless user.voted_for? comment
-      comment.downvote_from user
+    def ultimo(idconversation)
+      Comment.where('conversation_id = ?', idconversation)
     end
+
+    def positivo(comment,user)
+      unless user.voted_for? comment
+         comment.vote :voter => user
+      end
+    end
+
+    def negativo(comment,user)
+      unless user.voted_for? comment
+        comment.downvote_from user
+      end
+    end
+
   end
 
 end

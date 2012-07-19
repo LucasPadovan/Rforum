@@ -36,7 +36,7 @@
         <% if conversation.comments.count >= 2 %>
         <%= conversation.comments.find(:last).user.username %> dijo: <%= link_to(normalizar_texto(conversation.comments.find(:last).body, 40),
                                                                                  board_conversation_path(:board_id=>@board, :id=>conversation)+
-                                                                                         ultima_pagina(conversation)+"#"+conversation.comments.last.id.to_s) %>
+                                                                                         conversation.ultima_pagina+"#"+conversation.comments.last.id.to_s) %>
               <br/>A las <%= conversation.comments.find(:last).created_at.to_s(:detallada) %>
         <% else %>
           Sin respuesta todavia, se el primero en comentar!
