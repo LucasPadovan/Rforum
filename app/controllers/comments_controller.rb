@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.paginate :page =>params[:page], :order=>'created_at desc', :per_page=>20
+    @comments = Comment.paginate :page => params[:page], :order => 'created_at desc', :per_page => 20
 
     respond_to do |format|
       format.html # index.html.erb
@@ -88,29 +88,28 @@ class CommentsController < ApplicationController
   def votar
     @comentario = Comment.find(params[:comentario_id])
 
-    params[:negativo].present? ? (get_usuario.dislikes @comentario) : (get_usuario.likes @comentario)
-    totalvotos= @comentario.likes.count-@comentario.dislikes.count
-    render :js => "$('#totalVotos"+@comentario.id.to_s+"').html("+totalvotos.to_s+")"
+    params[:negativo].present? ? ( get_usuario.dislikes @comentario ) : ( get_usuario.likes @comentario )
+    totalvotos = @comentario.likes.count - @comentario.dislikes.count
+    render :js => "$('#totalVotos" + @comentario.id.to_s + "').html(" + totalvotos.to_s + ")"
 
   end
 
   private
 
-def u_pagina(c)
-  numerocomentarios = c.comments.count
-  retorno=""
-  Integer n = 0
-  if numerocomentarios > 15
-    unless numerocomentarios%15 == 0
-      n = 1
+  def u_pagina(c)
+    numerocomentarios = c.comments.count
+    retorno = ""
+    Integer n = 0
+    if numerocomentarios > 15
+      unless numerocomentarios%15 == 0
+        n = 1
+      end
+
+      n += numerocomentarios/15
+      n = String(n)
+      retorno = "?page=" + n
+    else
+      retorno
     end
-
-    n += numerocomentarios/15
-    n = String(n)
-    retorno="?page="+n
-  else
-    retorno
   end
-end
-
 end

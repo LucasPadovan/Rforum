@@ -17,7 +17,7 @@ class MensajepersonalsController < ApplicationController
   def show
     @mensajepersonal = Mensajepersonal.find(params[:id])
 
-    if @mensajepersonal.estado== 1
+    if @mensajepersonal.estado == 1
       @mensajepersonal.estado = 2 if @mensajepersonal.destinatario == get_usuario
       @mensajepersonal.save
     end
@@ -31,7 +31,7 @@ class MensajepersonalsController < ApplicationController
   # GET /mensajepersonals/new
   # GET /mensajepersonals/new.json
   def new
-    @mensajepersonal = get_usuario.msjenviados.build(:destinatario_id => params[:destinatario_id])
+    @mensajepersonal = get_usuario.msjenviados.build( :destinatario_id => params[:destinatario_id] )
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,13 +47,12 @@ class MensajepersonalsController < ApplicationController
   # POST /mensajepersonals
   # POST /mensajepersonals.json
   def create
-    @mensajepersonal = get_usuario.msjenviados.build(params[:mensajepersonal])
+    @mensajepersonal = get_usuario.msjenviados.build( params[:mensajepersonal] )
     @mensajepersonal.estado = 1
 
     respond_to do |format|
       if @mensajepersonal.save
-        format.html { redirect_to @mensajepersonal,
-                                  notice: 'Mensaje personal creado' }
+        format.html { redirect_to @mensajepersonal, notice: 'Mensaje personal creado' }
         format.json { render json: @mensajepersonal, status: :created, location: @mensajepersonal }
       else
         format.html { render action: "new" }
@@ -68,7 +67,7 @@ class MensajepersonalsController < ApplicationController
     @mensajepersonal = Mensajepersonal.find(params[:id])
 
     respond_to do |format|
-      if @mensajepersonal.update_attributes(params[:mensajepersonal])
+      if @mensajepersonal.update_attributes( params[:mensajepersonal] )
         format.html { redirect_to @mensajepersonal, notice: 'Mensajepersonal was successfully updated.' }
         format.json { head :ok }
       else
@@ -107,10 +106,10 @@ class MensajepersonalsController < ApplicationController
   end
 
   def recibidos
-    @recibidos= Mensajepersonal.where('destinatario_id =?',get_usuario).where('estado !=?',10)
+    @recibidos = Mensajepersonal.where( 'destinatario_id =?', get_usuario ).where( 'estado !=?', 10 )
   end
 
   def enviados
-    @enviados = Mensajepersonal.where('remitente_id =?', get_usuario).where('estado !=?',20)
+    @enviados = Mensajepersonal.where( 'remitente_id =?', get_usuario ).where( 'estado !=?', 20 )
   end
 end

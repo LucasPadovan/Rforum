@@ -55,7 +55,7 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       if current_user && @conversation.save
-        format.html { redirect_to board_path(@board), notice: 'Tu tema ha sido creado' }
+        format.html { redirect_to board_path( @board ), notice: 'Tu tema ha sido creado' }
         #format.json { render json: @conversation, status: :created, location: @conversation }
       else
         format.html { render action: "new" }
@@ -70,7 +70,7 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
 
     respond_to do |format|
-      if @conversation.update_attributes(params[:conversation])
+      if @conversation.update_attributes( params[:conversation] )
         format.html { redirect_to @conversation, notice: 'El tema fue actualizado' }
         format.json { head :ok }
       else
@@ -95,7 +95,7 @@ class ConversationsController < ApplicationController
   #GET /conversations/reply
   def reply
     @conversation = Conversation.find(params[:id])
-    @conversation.update_attributes( :updated_at => Time.now )
+    @conversation.update_attributes( updated_at: Time.now )
     @comment = @conversation.comments.build
 
     respond_to do |format|
@@ -106,16 +106,16 @@ class ConversationsController < ApplicationController
   #POST /conversations/reply
   def save_reply
     if !current_user
-      redirect_to(:login,:notice => "Por favor ingresa antes de comentar")
+      redirect_to( :login, :notice => "Por favor ingresa antes de comentar" )
       return 1;
     end
 
-    if Conversation.exists?(params[:id])
-      @conversation = Conversation.find(params[:id])
-      @comment=@conversation.comments.build(params[:comment])
+    if Conversation.exists?( params[:id] )
+      @conversation = Conversation.find( params[:id] )
+      @comment = @conversation.comments.build( params[:comment] )
       @comment.user_id = current_user.id
     else
-      redirect_to(boards_path, :notice => "Especifique un foro valido")
+      redirect_to( boards_path, :notice => "Especifique un foro valido" )
     end
 
     respond_to do |format|
@@ -131,12 +131,12 @@ class ConversationsController < ApplicationController
   private
 
   def load_board
-    if Board.exists?(params[:board_id])
+    if Board.exists?( params[:board_id] )
       @board = Board.find(params[:board_id]);
     end
 
     unless @board
-      redirect_to(boards_path, :notice => "Especifique un foro valido")
+      redirect_to( boards_path, :notice => "Especifique un foro valido" )
     end
   end
 

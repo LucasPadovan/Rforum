@@ -26,12 +26,12 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return @current_user if defined?(@current_user)
-    @current_user=current_user_session && current_user_session.record
+    @current_user = current_user_session && current_user_session.record
   end
 
   def es_administrador
     if @current_user != nil
-      @current_user.rango=="Administrador"
+      @current_user.rango == "Administrador"
     else
       return false
     end

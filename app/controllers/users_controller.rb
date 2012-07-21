@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :authorize, only: [:new, :create, :save]
   before_filter :authorize_admin, only: :destroy
+
   # GET /users
   # GET /users.json
   def index
@@ -27,20 +28,14 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
     if current_user
-      redirect_to(homepage_url,:notice => 'Ya estas registrado!!')
+      redirect_to( homepage_url, :notice => 'Ya estas registrado!!' )
     end
-    #respond_to do |format|
-      #format.html # new.html.erb
-      #format.json { render json: @user }
-    #end
   end
 
   # GET /users/1/edit
   def edit
     is_user
-    #@user = User.find(params[:id])
   end
 
   # POST /users
@@ -52,10 +47,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save && @user_session.save
         format.html { redirect_to homepage_url, notice: 'Usuario registrado satisfactoriamente' }
-        #format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
-        #format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,7 +56,6 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    #@user = User.find(params[:id])
     is_user
 
     respond_to do |format|
@@ -102,5 +94,4 @@ class UsersController < ApplicationController
       redirect_to(homepage_url, :notice=>"No tienes permisos para acceder a esta pagina")
     end
   end
-
 end
