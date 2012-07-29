@@ -12,12 +12,8 @@
   <% end %>
 Para: <%= @mensajepersonal.destinatario.username %><br/>
 De: <%= @mensajepersonal.remitente.username %>
-  <div class="field">
     <%= f.hidden_field :remitente_id %>
-  </div>
-    <div class="field">
     <%= f.hidden_field :destinatario_id %>
-  </div>
   <div class="field">
     <%= f.label :titulo %><br />
     <%= f.text_field :titulo %>
@@ -25,7 +21,11 @@ De: <%= @mensajepersonal.remitente.username %>
   <div class="field">
       <div id="barrabbcode"><span id="youtube">Youtube</span> | <span id="imagen">Imágen</span> | <span id="centrar">Centrar</span> |
       <span id="spoiler">Spoiler</span> | <span id="url">URL</span></div>
-    <%= f.text_area(:cuerpo, :size=>"90x10") %>
+    <%= fields_for(@message) do |m| %>
+            <div class="field">
+              <%= m.text_area(:body, :size=>"90x20") %>
+            </div>
+      <% end %>
   </div>
   <div class="actions">
     <%= f.submit(:value => "Enviar") %>

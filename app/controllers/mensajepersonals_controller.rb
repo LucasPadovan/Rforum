@@ -16,6 +16,7 @@ class MensajepersonalsController < ApplicationController
   # GET /mensajepersonals/1.json
   def show
     @mensajepersonal = Mensajepersonal.find(params[:id])
+    @messages = @mensajepersonal.messages.paginate :page =>params[:page], :order=>'created_at asc', :per_page=>15
 
     if @mensajepersonal.estado == 1
       @mensajepersonal.estado = 2 if @mensajepersonal.destinatario == get_usuario
@@ -31,7 +32,8 @@ class MensajepersonalsController < ApplicationController
   # GET /mensajepersonals/new
   # GET /mensajepersonals/new.json
   def new
-    @mensajepersonal = get_usuario.msjenviados.build( :destinatario_id => params[:destinatario_id] )
+    @mensajepersonal = get_usuario.msjenviados.build(:destinatario_id => params[:destinatario_id])
+    @message = @mensajepersonal.messages.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,20 +41,18 @@ class MensajepersonalsController < ApplicationController
     end
   end
 
-  # GET /mensajepersonals/1/edit
-  #def edit
-  #  @mensajepersonal = Mensajepersonal.find(params[:id])
-  #end
-
   # POST /mensajepersonals
   # POST /mensajepersonals.json
   def create
-    @mensajepersonal = get_usuario.msjenviados.build( params[:mensajepersonal] )
+    @mensajepersonal = Mensajepersonal.new(params[:mensajepersonal])
+    @message = @mensajepersonal.messages.build(params[:message])
+    @message.user = get_usuario
     @mensajepersonal.estado = 1
 
     respond_to do |format|
       if @mensajepersonal.save
-        format.html { redirect_to @mensajepersonal, notice: 'Mensaje personal creado' }
+        format.html { redirect_to @mensajepersonal,
+                                  notice: 'Mensaje personal creado' }
         format.json { render json: @mensajepersonal, status: :created, location: @mensajepersonal }
       else
         format.html { render action: "new" }
@@ -85,14 +85,14 @@ class MensajepersonalsController < ApplicationController
     vinicial = valorestado = @mensajepersonal.estado
 
     if @mensajepersonal.destinatario == get_usuario
-      valorestado=10
+      valorestado = 10
     elsif @mensajepersonal.remitente == get_usuario
-      valorestado=20
+      valorestado = 20
     end
 
     @mensajepersonal.estado = valorestado
 
-    if vinicial+valorestado == 30 || @mensajepersonal.remitente == @mensajepersonal.destinatario
+    if vinicial + valorestado == 30 || @mensajepersonal.remitente == @mensajepersonal.destinatario
       @mensajepersonal.destroy
     else
       @mensajepersonal.save
@@ -100,16 +100,42 @@ class MensajepersonalsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to recibidos_url }
-
       format.json { head :ok }
     end
   end
 
+  #GET /mensajepersonals/reply
+  def reply
+    @mensajepersonal= Mensajepersonal.find(params[:id])
+    @message = @mensajepersonal.messages.build
+
+    respond_to do |format|
+      format.html #reply.html.erb
+    end
+  end
+
+  #POST /conversations/reply
+    def save_reply
+      if Mensajepersonal.exists?(params[:id])
+        @mensajepersonal = Mensajepersonal.find(params[:id])
+        @message = @mensajepersonal.messages.build(params[:message])
+        @message.user_id = current_user.id
+      end
+
+      respond_to do |format|
+        if current_user && @message.save
+          format.html {redirect_to @mensajepersonal }
+        else
+          format.html {render :action => "new"}
+        end
+      end
+    end
+
   def recibidos
-    @recibidos = Mensajepersonal.where( 'destinatario_id =?', get_usuario ).where( 'estado !=?', 10 )
+    @recibidos = get_usuario.msjrecibidos.where( 'estado !=?', 10 )
   end
 
   def enviados
-    @enviados = Mensajepersonal.where( 'remitente_id =?', get_usuario ).where( 'estado !=?', 20 )
+    @enviados = get_usuario.msjenviados.where( 'estado !=?', 20 )
   end
 end

@@ -1,4 +1,4 @@
-<h1><div id="titulo">Listado de  mensajes personales</div></h1>
+<h1><div id="titulo">Listado de mensajes personales</div></h1>
 
 <table id="foros">
   <tr id="principal">
@@ -15,10 +15,9 @@
     <td><%= mensajepersonal.remitente.username %></td>
     <td><%= mensajepersonal.destinatario.username %></td>
     <td><%= mensajepersonal.titulo %></td>
-    <td><%= normalizar_texto(mensajepersonal.cuerpo, 40) %></td>
+    <td><%= normalizar_texto(mensajepersonal.messages.first.body, 40) unless mensajepersonal.messages.blank?%></td>
     <td><%= link_to 'Ver', mensajepersonal %></td>
     <td><%= link_to 'Eliminar', mensajepersonal, confirm: 'Estas seguro?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
-
