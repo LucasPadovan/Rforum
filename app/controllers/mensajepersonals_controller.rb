@@ -24,7 +24,7 @@ class MensajepersonalsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @mensajepersonal }
     end
   end
@@ -104,22 +104,14 @@ class MensajepersonalsController < ApplicationController
     end
   end
 
-  #GET /mensajepersonals/reply
-  def reply
-    @mensajepersonal= Mensajepersonal.find(params[:id])
-    @message = @mensajepersonal.messages.build
-
-    respond_to do |format|
-      format.html #reply.html.erb
-    end
-  end
-
   #POST /conversations/reply
     def save_reply
       if Mensajepersonal.exists?(params[:id])
         @mensajepersonal = Mensajepersonal.find(params[:id])
+        @mensajepersonal.estado = 3 if (@mensajepersonal.estado != 1)
         @message = @mensajepersonal.messages.build(params[:message])
         @message.user_id = current_user.id
+        @message.mensajepersonal_id = @mensajepersonal.id
       end
 
       respond_to do |format|

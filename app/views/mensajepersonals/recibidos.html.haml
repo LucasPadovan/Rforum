@@ -1,0 +1,24 @@
+%h1
+  #titulo
+    Bandeja de entrada de #{get_usuario.username}
+- if @recibidos.exists?
+  %table#foros
+    %tr#principal
+      %td
+      %td
+      %td
+    - @recibidos.each do |mensajepersonal|
+      %tr#lineaPm
+        %td
+          Mensaje:#{link_to normalizar_texto(mensajepersonal.titulo,100), mensajepersonal}
+          %br/
+          De:-------:#{mensajepersonal.remitente.username}:-------:
+        %td
+          A las: #{mensajepersonal.created_at.to_s(:detallada)}
+        %td= link_to 'Eliminar', mensajepersonal, confirm: 'Estás seguro?', method: :delete
+    %tr#principal
+      %td
+      %td
+      %td
+- else
+  Aún no has recibido ningun mensaje.

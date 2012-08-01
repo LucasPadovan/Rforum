@@ -1,0 +1,36 @@
+= form_for(@mensajepersonal) do |f|
+  - if @mensajepersonal.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@mensajepersonal.errors.count, "error")
+        prohibited this mensajepersonal from being saved:
+      %ul
+        - @mensajepersonal.errors.full_messages.each do |msg|
+          %li= msg
+  Para:
+  = @mensajepersonal.destinatario.username
+  %br
+  De:
+  = @mensajepersonal.remitente.username
+  = f.hidden_field :remitente_id
+  = f.hidden_field :destinatario_id
+  %div.field
+    = f.label :titulo
+    %br/
+    = f.text_field :titulo
+  %div.field
+    %div#barrabbcode
+      %span#youtube Youtube
+      |
+      %span#imagen Imágen
+      |
+      %span#centrar Centrar
+      |
+      %span#spoiler Spoiler
+      |
+      %span#url URL
+    = fields_for(@message) do |m|
+      %div.field
+        = m.text_area(:body, :size=>"90x20")
+  %div.actions
+    = f.submit(:value => "Enviar")

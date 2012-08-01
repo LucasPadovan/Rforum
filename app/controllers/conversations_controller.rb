@@ -22,7 +22,7 @@ class ConversationsController < ApplicationController
     @otroscomentarios = @conversation.comments.paginate :page =>params[:page], :order=>'created_at asc', :per_page=>15
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @conversation }
     end
   end

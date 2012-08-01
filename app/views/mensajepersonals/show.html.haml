@@ -1,0 +1,39 @@
+- if get_usuario == @mensajepersonal.remitente || get_usuario == @mensajepersonal.destinatario
+  %h1
+    %div#titulo Mensaje
+  %p
+    De:
+    = @mensajepersonal.remitente.username
+  %p
+    Para:
+    = @mensajepersonal.destinatario.username
+  -@messages.each do |message|
+    %br/
+    %p
+      %b= "#{message.user.username}: "
+      #cuerpoPM= sanitizar_bbcode(message.body)
+    = message.created_at.to_s(:detallada)
+  %br/
+  %br/
+  %div
+    %h3 Responder:
+    %div#barrabbcode
+      %span#youtube Youtube
+      |
+      %span#imagen Imágen
+      |
+      %span#centrar Centrar
+      |
+      %span#spoiler Spoiler
+      |
+      %span#url URL
+    = form_for Message.new, :url => {:action => 'save_reply'} do |f|
+      = f.text_area(:body, :size => "90x20")
+      = f.submit "Responder", disable_with: "Enviando respuesta..."
+-else
+  %h1
+    %div#titulo No tienes acceso a este mensaje
+%br/
+= link_to 'Mensajes enviados', enviados_path
+|
+= link_to 'Bandeja de entrada', recibidos_path

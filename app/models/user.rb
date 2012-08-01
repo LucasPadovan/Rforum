@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
   end
 
   def self.recibidosnuevos(user)
-    user.msjrecibidos.where('estado =?',1).count
+    user.msjrecibidos.where('estado =? AND estado =?', 1, 3).count
+  end
+
+  def enviadosnuevos
+    self.msjenviados.where('estado =?', 3).count
   end
 end

@@ -1,0 +1,18 @@
+%h1
+  #titulo Listado de mensajes personales
+%table#foros
+  %tr#principal
+    %th Remitente
+    %th Destinatario
+    %th Titulo
+    %th Cuerpo
+    %th
+    %th
+  - @mensajepersonals.each do |mensajepersonal|
+    %tr#lineaPM
+      %td= mensajepersonal.remitente.username
+      %td= mensajepersonal.destinatario.username
+      %td= mensajepersonal.titulo
+      %td= normalizar_texto(mensajepersonal.messages.first.body, 40) unless mensajepersonal.messages.blank?
+      %td= link_to 'Ver', mensajepersonal
+      %td= link_to 'Eliminar', mensajepersonal, confirm: 'Estas seguro?', method: :delete
