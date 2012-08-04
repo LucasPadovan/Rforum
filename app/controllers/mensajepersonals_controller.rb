@@ -17,12 +17,8 @@ class MensajepersonalsController < ApplicationController
   def show
     @mensajepersonal = Mensajepersonal.find(params[:id])
     @messages = @mensajepersonal.messages.paginate :page =>params[:page], :order=>'created_at asc', :per_page=>15
-
-    if @mensajepersonal.estado == 1
-      @mensajepersonal.estado = 2 if @mensajepersonal.destinatario == get_usuario
-      @mensajepersonal.save
-    end
-
+    @mensajepersonal.estado = 2 unless @mensajepersonal.messages.last.user == get_usuario
+    @mensajepersonal.save
     respond_to do |format|
       format.html # show.html.haml
       format.json { render json: @mensajepersonal }
@@ -52,7 +48,7 @@ class MensajepersonalsController < ApplicationController
     respond_to do |format|
       if @mensajepersonal.save
         format.html { redirect_to @mensajepersonal,
-                                  notice: 'Mensaje personal creado' }
+                                  notice: 'Mensaje personal enviado' }
         format.json { render json: @mensajepersonal, status: :created, location: @mensajepersonal }
       else
         format.html { render action: "new" }
@@ -78,7 +74,7 @@ class MensajepersonalsController < ApplicationController
   end
 
   # DELETE /mensajepersonals/1
-  # DELETE /mensajepersonals/1.json
+  # DELETE /mensajepersonals/1.json arreglar logica para cambiar el estado al querer borrar y que al otro le muestre los nuevos todavia
   def destroy
     @mensajepersonal = Mensajepersonal.find(params[:id])
 
@@ -108,12 +104,16 @@ class MensajepersonalsController < ApplicationController
     def save_reply
       if Mensajepersonal.exists?(params[:id])
         @mensajepersonal = Mensajepersonal.find(params[:id])
-        @mensajepersonal.estado = 3 if (@mensajepersonal.estado != 1)
+        if @mensajepersonal.remitente == current_user
+          @mensajepersonal.estado = 3 if @mensajepersonal.estado != 1
+        elsif @mensajepersonal.destinatario == current_user
+          @mensajepersonal.estado = 4 if @mensajepersonal.estado != 1
+        end
         @message = @mensajepersonal.messages.build(params[:message])
         @message.user_id = current_user.id
         @message.mensajepersonal_id = @mensajepersonal.id
+        @mensajepersonal.save
       end
-
       respond_to do |format|
         if current_user && @message.save
           format.html {redirect_to @mensajepersonal }

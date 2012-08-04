@@ -10,17 +10,15 @@ class User < ActiveRecord::Base
   has_many :msjenviados, :class_name => 'Mensajepersonal', :foreign_key => 'remitente_id'
   has_many :msjrecibidos, :class_name => 'Mensajepersonal', :foreign_key => 'destinatario_id'
 
-  has_many :usuario_cancions
-
   def to_s
     [self.nombre, self.apellido].compact.join(' ')
   end
 
-  def self.recibidosnuevos(user)
-    user.msjrecibidos.where('estado =? AND estado =?', 1, 3).count
+  def recibidosnuevos
+    msjrecibidos.where('estado =? OR estado =?', 1, 3).count
   end
 
   def enviadosnuevos
-    self.msjenviados.where('estado =?', 3).count
+    msjenviados.where('estado =?', 4).count
   end
 end

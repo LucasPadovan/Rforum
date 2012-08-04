@@ -7,5 +7,5 @@ class Mensajepersonal < ActiveRecord::Base
   default_scope :order => 'created_at'
 
   validates :remitente_id, :destinatario_id, :titulo, presence: true
-
+  validates_associated :messages
 end

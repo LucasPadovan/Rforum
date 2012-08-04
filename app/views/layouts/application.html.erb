@@ -64,7 +64,7 @@
       <%= @usuario.rango %><br/>
       Comentarios: <%= @usuario.comments.count %><br/>
       Registrado: <%= @usuario.created_at.to_s( :simple ) %><br/><br/>
-      <%= link_to 'Bandeja de entrada', recibidos_path %> (<%= User.recibidosnuevos(@usuario) %>)<br/>
+      <%= link_to 'Bandeja de entrada', recibidos_path %> (<%= @usuario.recibidosnuevos %>)<br/>
       <%= link_to 'Mensajes enviados', enviados_path%> (<%= @usuario.enviadosnuevos %>) <br/><br/>
 
   </div><br/>

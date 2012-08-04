@@ -4,5 +4,5 @@ class Message < ActiveRecord::Base
 
   attr_accessible :body, :mensajepersonal_id, :user_id
 
-  validates :user_id, :mensajepersonal_id, :body, presence: true
+  validates :body, :presence => true
 end
