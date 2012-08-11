@@ -1,0 +1,81 @@
+!!!
+%html
+  %head
+    %title
+      Foro de cursos del CETEM
+    = stylesheet_link_tag    "application", rel:"stylesheet", title:"normal"
+    %link{:href => "http://reproductoranimedake.site90.net/Semidioses5g/RforumBig.css", :rel => "alternate stylesheet", :title => "big", :type => "text/css"}/
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %script{:src => "http://code.jquery.com/jquery-latest.js", :type => "text/javascript"}
+    %script{:src => "http://reproductoranimedake.site90.net/Semidioses5g/DynamicSS.js", :type => "text/javascript"}
+    %script{:src => "http://js.nicedit.com/nicEdit-latest.js", :type => "text/javascript"}
+    :javascript
+      bkLib.onDomLoaded(nicEditors.allTextAreas);  %script{:language => "JavaScript"}
+    verificarResolucion()
+  %body
+    #banner
+      %h1 Foro de cursos del CETEM
+      #logueo
+        - if current_user
+          - @usuario = get_usuario
+          = link_to "Editar perfil", edit_user_path(current_user.id)
+          = link_to "Logout", :logout
+        - else
+          = link_to "Registrarse", new_user_path
+          = link_to "Login", :login
+      %nav#menu
+        = link_to "Foro", boards_path
+        = link_to "Usuarios", users_path
+        - if es_administrador
+          = link_to "Comentarios", comments_path
+    #ocultador
+      Ocultar barra lateral
+    #izquierda
+      #ultimoscomentarios
+        %span Últimos comentarios:
+        - Comment.ultimos_comentarios.each do |comment|
+          #lineaUltCom
+            = link_to(comment.user.username, comment.user)
+            = "dijo: #{normalizar_texto(comment.body, 40)}"
+            %br/
+            En:
+            = link_to( comment.conversation.title, board_conversation_path( board_id: comment.conversation.board, id: comment.conversation ) + comment.conversation.ultima_pagina + "#" + comment.id.to_s )
+            %br/
+            = "Hace #{time_ago_in_words(comment.created_at)}"
+    #derecha
+      - if @usuario
+        #bloqueUsuario
+          %span
+            = @usuario.username
+          %br/
+          %br
+            %img{src: "#{@usuario.avatar.html_safe if @usuario.avatar.present?}"}
+              %br/
+              %br/
+              = @usuario.rango
+              %br/
+              Comentarios:
+              = @usuario.comments.count
+              %br/
+              Registrado:
+              = @usuario.created_at.to_s( :simple )
+              %br/
+              %br/
+              = link_to 'Bandeja de entrada', recibidos_path
+              = "(#{@usuario.recibidosnuevos})"
+              %br/
+              = link_to 'Mensajes enviados', enviados_path
+              = "(#{@usuario.enviadosnuevos})"
+              %br/
+              %br/
+        %br/
+        %form
+          %input#application{:name => "theme", :onclick => "switch_style('normal');return false;", :type => "submit", :value => "1280*1024"}
+            %input#applicationBig{:name => "theme", :onclick => "switch_style('big');return false;", :type => "submit", :value => "1920*1080"}
+    #centro
+      = yield
+      %footer
+        %p
+          %a{:name => "fondo"}
+            RForum plataforma de foros de codigo abierto y personalizable. Contacto: lucaslockon@gmail.com
