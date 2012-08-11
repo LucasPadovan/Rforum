@@ -1,0 +1,53 @@
+%p#notice= notice
+%h1
+  #titulo
+    Perfil de #{@user.username}
+= link_to "Enviar mensaje", new_mensajepersonal_url(destinatario_id: @user)
+%p
+  %b Nombre de Usuario:
+  = @user.username
+%p
+  %b Email:
+  = @user.email
+%p
+  %b Nombre:
+  = @user.nombre
+%p
+  %b Apellido:
+  = @user.apellido
+%p
+  %b Fecha de nacimiento:
+  = @user.fechanac
+%p
+  %b Pais:
+  = @user.pais
+%p
+  %b Provincia:
+  = @user.provincia
+%p
+  %b Numero telefonico:
+  = @user.numtel
+%p
+  %b Avatar:
+  %img{:src => @user.avatar}
+%p
+  %b Firma:
+  = BBCoder.new(@user.firma).to_html.html_safe if @user.firma.present?
+%p
+  %b Pagina web:
+  = @user.pagweb
+%p
+  %b Recibir notificaciones por correo:
+  = @user.notify_by_email ? 'Si' : 'No'
+%p
+  %b Puntuacion:
+  = @user.puntuacion
+%p
+  %b Rango:
+  = @user.rango
+- if es_administrador || @user==get_usuario
+  = link_to 'Editar', edit_user_path(@user)
+  = "|"
+= link_to 'Pagina Principal', homepage_url
+= "|"
+= link_to 'Usuarios', users_path

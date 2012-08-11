@@ -1,0 +1,28 @@
+= form_for(@comment, url: reply_board_conversation_url(board_id: @board, id: @conversation)) do |f|
+  - if @comment.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@comment.errors.count, "error")
+        prohibited this reply from being saved:
+      %ul
+        - comment.errors.full_messages.each do |msg|
+          %li= msg
+  = render 'commons/textarea_tools'
+  .field
+    = f.text_area(:body, size: "90x20")
+  .actions
+    = f.submit(value: "Enviar respuesta")
+  %br/
+  Ultimos comentarios:
+  - conv = @comment.conversation
+  - veces = 0
+  - conv.comments.reverse_each do |com|
+    #foros
+      - veces += 1
+      %strong
+        = com.user.username
+      dijo:
+      = sanitize(sanitizar_bbcode(com.body))
+      %br/
+    - break if veces==8
+//TODO: comments.conversarion.last_comments(number) y que busque los ultimos number comentarios de la conversacion y los traiga al revez.

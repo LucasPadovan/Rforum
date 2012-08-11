@@ -1,0 +1,22 @@
+%h1
+  #titulo Comentarios
+%table
+  %tr
+    %th Id
+    %th Usuario
+    %th Conversacion
+    %th Cuerpo
+    %th
+    %th
+    %th
+  - @comments.each do |comment|
+    %tr
+      %td= comment.id
+      %td= comment.user.username
+      %td= comment.conversation.title
+      %td= normalizar_texto(comment.body, 50)
+      %td= link_to 'Ver', comment
+      %td= link_to 'Editar', edit_comment_path(comment)
+      %td= link_to 'Destruir', comment, confirm: '¿Estas seguro?', method: :delete
+%br/
+%p= will_paginate @comments

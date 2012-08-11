@@ -18,17 +18,7 @@
     = f.label :titulo
     %br/
     = f.text_field :titulo
-  %div.field
-    %div#barrabbcode
-      %span#youtube Youtube
-      |
-      %span#imagen Imágen
-      |
-      %span#centrar Centrar
-      |
-      %span#spoiler Spoiler
-      |
-      %span#url URL
+  = render 'commons/textarea_tools'
     = fields_for(@message) do |m|
       %div.field
         = m.text_area(:body, :size=>"90x20")

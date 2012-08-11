@@ -1,0 +1,95 @@
+//TODO: llevar a un partial la vista de los comentarios y/o, no dividir por primer comentario/otros comentarios pero dejar la diferenciacion de estilos con css algo como css:first style.
+- if notice.present?
+  %p#notice= notice
+%h1
+  #titulo = @conversation.title
+= link_to 'Panel Principal', boards_path
+- unless @conversation.board.padre == 1
+  - board = Board.find(@conversation.board.padre)
+  = ">"
+  = link_to board.title, board
+= ">"
+= link_to @conversation.board.title, @conversation.board
+%br/
+%p= will_paginate @otroscomentarios
+- @primercomentario
+#primercomentario
+  %dl#usuarioEnPrimerComentario
+    %span
+      %a{name: @primercomentario.id.to_s}
+    %img{src: @primercomentario.user.avatar}
+      %br/
+      = @primercomentario.user.username
+      %br/
+      = @primercomentario.user.rango
+      %br/
+      Puntuación: #{@primercomentario.user.puntuacion}
+      %br/
+      Registrado: #{@primercomentario.user.created_at.to_s(:simple)}
+      %br/
+      %br/
+      - unless @primercomentario.user == get_usuario
+        = link_to "Enviar mensaje", new_mensajepersonal_path(destinatario_id: @primercomentario.user.id)
+  #cuerpoPrimerComentario
+    = sanitizar_bbcode(@primercomentario.body)
+    #votacion
+      %ul#votos
+        - unless get_usuario.voted_for? @primercomentario
+          %li#id_contenedor_link_voto_m
+            = link_to '', votar_encuesta_path(comentario_id: @primercomentario), remote: true
+          %li#id_contenedor_link_voto_-
+            = link_to '', votar_encuesta_path(comentario_id: @primercomentario, negativo: true), remote: true
+        - else
+        %li
+          %span{id: "totalVotos#{@primercomentario.id.to_s}"}= @primercomentario.likes.size - @primercomentario.dislikes.size
+    #firmaEnComentario
+      = sanitizar_bbcode(@primercomentario.user.firma)
+    %br/
+    #fecha
+      Creado: #{@primercomentario.created_at.to_s(:detallada)}
+      - if es_administrador || @primercomentario.user == get_usuario
+        = "|"
+        = link_to "Editar", edit_comment_path(@primercomentario)
+- @otroscomentarios.each do |comment|
+  - unless comment == @primercomentario
+    %div{id: cycle('comentariospar', 'comentariosimpar')}
+      %dl#usuarioEnComentario
+        %span
+          %a{name: comment.id.to_s}
+        %img{src: comment.user.avatar}
+          %br/
+          = comment.user.username
+          %br/
+          = comment.user.rango
+          %br/
+          Puntuación: #{comment.user.puntuacion}
+          %br/
+          Registrado: #{comment.user.created_at.to_s(:simple)}
+          %br/
+          %br/
+          - unless comment.user == get_usuario
+            = link_to "Enviar mensaje", new_mensajepersonal_url(destinatario_id: comment.user)
+      #cuerpoComentario
+        = sanitizar_bbcode(comment.body)
+        #votacion2
+          %ul#votos
+            - unless get_usuario.voted_for? comment
+              %li#id_contenedor_link_voto_m
+                = link_to '', votar_encuesta_path(comentario_id: comment), remote: true
+              %li#id_contenedor_link_voto_-
+                = link_to '', votar_encuesta_path(comentario_id: comment, negativo: true), remote: true
+            - else
+            %li
+              %span{:id => "totalVotos#{comment.id.to_s}"}= comment.likes.size-comment.dislikes.size
+        #firmaEnComentario
+          = sanitizar_bbcode(comment.user.firma)
+        #fecharespuesta
+          Respuesta realizada a las: #{comment.created_at.to_s(:detallada)}
+          - if es_administrador || comment.user==get_usuario
+            = "|"
+            = link_to "Editar", edit_comment_path(comment)
+          %br/
+  = link_to 'Responder', reply_board_conversation_url(board_id: @board, id: @conversation)
+  = "|"
+  = link_to  @conversation.board.title, @conversation.board
+  %p= will_paginate @otroscomentarios

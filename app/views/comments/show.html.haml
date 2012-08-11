@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %b Id:
+  = @comment.id
+%p
+  %b Usuario:
+  = @comment.user.username
+%p
+  %b Conversacion:
+  = @comment.conversation.title
+%p
+  %b Cuerpo:
+  = sanitize(BBCoder.new(@comment.body).to_html.html_safe)
+= link_to 'Editar', edit_comment_path(@comment)
+= "|"
+= link_to 'Volver', comments_path

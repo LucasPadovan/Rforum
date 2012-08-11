@@ -1,0 +1,8 @@
+%h1
+  #titulo
+    Editando tu comentario
+= render 'form'
+= link_to 'Ver', @comment
+= "|"
+Volver a
+= link_to(@comment.conversation.title, board_conversation_path(board_id: @comment.conversation.board, id: @comment.conversation))

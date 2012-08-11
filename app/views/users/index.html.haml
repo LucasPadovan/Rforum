@@ -1,0 +1,25 @@
+%h1
+  #titulo Listado de Usuarios
+%p#notice= notice
+%table
+  %tr
+    %th Username
+    %th Email
+    %th Puntuacion
+    %th Rango
+    %th
+    %th
+    %th
+  - @users.each do |user|
+    %tr
+      %td= link_to user.username, user
+      %td= user.email
+      %td= user.puntuacion
+      %td= user.rango
+      %td
+        - if es_administrador
+          = link_to 'Ver', user
+          = link_to 'Editar', edit_user_path(user)
+          = link_to 'Destruir', user, confirm: 'Estas seguro?', method: :delete
+        = link_to "Enviar mensaje", new_mensajepersonal_url(:destinatario_id => user) unless user==get_usuario
+%br/

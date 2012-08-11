@@ -1,0 +1,26 @@
+%h1
+  #titulo Listando las conversaciones
+%table
+  %tr
+    %th Id
+    %th Titulo
+    %th Foro
+    %th Usuario
+    %th Cuerpo
+    %th Puntaje
+    %th
+    %th
+    %th
+  - @conversations.each do |conversation|
+    %tr
+      %td= conversation.id
+      %td= conversation.title
+      %td= conversation.board.title
+      %td= conversation.user.username
+      %td= normalizar_texto(conversation.cuerpo,60)
+      %td= conversation.puntaje
+      %td/
+    %td/
+    %td/
+%br/
+= link_to 'New Conversation', new_board_conversation_path
