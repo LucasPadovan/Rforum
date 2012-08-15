@@ -2,7 +2,7 @@
 - if notice.present?
   %p#notice= notice
 %h1
-  #titulo = @conversation.title
+  #titulo= @conversation.title
 = link_to 'Panel Principal', boards_path
 - unless @conversation.board.padre == 1
   - board = Board.find(@conversation.board.padre)
@@ -89,7 +89,7 @@
             = "|"
             = link_to "Editar", edit_comment_path(comment)
           %br/
-  = link_to 'Responder', reply_board_conversation_url(board_id: @board, id: @conversation)
-  = "|"
-  = link_to  @conversation.board.title, @conversation.board
-  %p= will_paginate @otroscomentarios
+= link_to 'Responder', reply_board_conversation_url(board_id: @board, id: @conversation)
+= "|"
+= link_to  @conversation.board.title, @conversation.board
+%p= will_paginate @otroscomentarios

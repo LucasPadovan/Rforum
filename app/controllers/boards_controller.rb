@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    @boards = Board.includes(:conversations, {conversations: :comments}).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @board = Board.find(params[:id])
+    @board = Board.includes(:conversations).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.haml
