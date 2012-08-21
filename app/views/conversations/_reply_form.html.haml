@@ -14,15 +14,11 @@
     = f.submit(value: "Enviar respuesta")
   %br/
   Ultimos comentarios:
-  - conv = @comment.conversation
-  - veces = 0
-  - conv.comments.reverse_each do |com|
+  - @last_comments.each do |com|
     #foros
-      - veces += 1
       %strong
         = com.user.username
       dijo:
       = sanitize(sanitizar_bbcode(com.body))
       %br/
-    - break if veces==8
 //TODO: comments.conversarion.last_comments(number) y que busque los ultimos number comentarios de la conversacion y los traiga al revez.

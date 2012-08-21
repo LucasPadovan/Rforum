@@ -18,7 +18,6 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.find(params[:id])
     @primercomentario = @conversation.comments.first
-
     @otroscomentarios = @conversation.comments.paginate :page =>params[:page], :order=>'created_at asc', :per_page=>15
 
     respond_to do |format|
@@ -95,7 +94,7 @@ class ConversationsController < ApplicationController
   #GET /conversations/reply
   def reply
     @conversation = Conversation.find(params[:id])
-    @conversation.update_attributes( updated_at: Time.now )
+    @last_comments = Comment.includes(:user).where('conversation_id =?', params[:id]).order('created_at desc').first(10)
     @comment = @conversation.comments.build
 
     respond_to do |format|
@@ -113,6 +112,7 @@ class ConversationsController < ApplicationController
     if Conversation.exists?( params[:id] )
       @conversation = Conversation.find( params[:id] )
       @comment = @conversation.comments.build( params[:comment] )
+      @conversation.update_attributes( updated_at: Time.now )
       @comment.user_id = current_user.id
     else
       redirect_to( boards_path, :notice => "Especifique un foro valido" )

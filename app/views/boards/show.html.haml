@@ -1,18 +1,16 @@
 %p#notice= notice
+//TODO: ver la logica de padres.
 %h1
   #titulo= @board.title
 = link_to 'Panel Principal', boards_path
-- unless @board.padre == 1
-  - board= Board.find(@board.padre)
-  = link_to board.title, board
-= link_to @board.title, @board
+= "|"
+= link_to(@father.title, @father) unless @father.blank?
 %br/
 %br/
-- hijos = Board.find_all_by_padre(@board.id)
-- unless hijos.count == 0
+- unless @childrens.blank?
   #forosHijoEnBoardShow
     Subforos:
-    - hijos.each do |h|
+    - @childrens.each do |h|
       = "|"
       = link_to h.title, h
       |
@@ -27,24 +25,25 @@
   - @board.conversations.each do |conversation|
     %tr{:id => cycle('postPar', 'postImpar')}
       %td
-        = link_to conversation.title, board_conversation_path(:board_id=>@board, :id=>conversation)
+        = link_to conversation.title, board_conversation_path(board_id: @board, id: conversation)
         #creadoPor
           por #{conversation.user.username}
       %td= normalizar_texto(conversation.comments.first.body, 40)
-      %td= conversation.comments.count-1
+      %td= conversation.comments.length-1
       %td
-        - if conversation.comments.count >= 2
-          = conversation.comments.find(:last).user.username
+        - if conversation.comments.length >= 2
+          - comm = conversation.comments.last
+          = comm.user.username
           dijo:
-          = link_to(normalizar_texto(conversation.comments.find(:last).body, 40), board_conversation_path(:board_id=>@board, :id=>conversation)+conversation.ultima_pagina+"#"+conversation.comments.last.id.to_s)
+          = link_to( normalizar_texto(comm.body, 40), board_conversation_path(board_id: @board, id: conversation) + conversation.ultima_pagina + "#" + comm.id.to_s )
           %br/
           A las
-          = conversation.comments.find(:last).created_at.to_s(:detallada)
+          = comm.created_at.to_s(:detallada)
         - else
           Sin respuesta todavia, se el primero en comentar!
-      %td
-        - if es_administrador
-          = link_to 'Destroy', board_conversation_path(conversation.board.id, conversation.id), confirm: 'Are you sure?', method: :delete
+      -#%td
+      -#  - if es_administrador
+      -#    = link_to 'Destroy', board_conversation_path(conversation.board.id, conversation.id), confirm: 'Estas seguro?', method: :delete
 %br/
 - if es_administrador
   = link_to 'Editar', edit_board_path(@board)

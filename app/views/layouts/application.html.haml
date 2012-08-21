@@ -30,54 +30,18 @@
         = link_to "Usuarios", users_path
         - if es_administrador
           = link_to "Comentarios", comments_path
-    -##ocultador
-    -#  Ocultar barra lateral
-    -##izquierda
-    -#  #ultimoscomentarios
-    -#    %span Últimos comentarios:
-    -#    - Comment.ultimos_comentarios.each do |comment|
-    -#      #lineaUltCom
-    -#        = link_to(comment.user.username, comment.user)
-    -#        = "dijo: #{normalizar_texto(comment.body, 40)}"
-    -#        %br/
-    -#        En:
-    -#        = link_to( comment.conversation.title, board_conversation_path( board_id: comment.conversation.board, id: comment.conversation ) + comment.conversation.ultima_pagina + "#" + comment.id.to_s )
-    -#        %br/
-    -#        = "Hace #{time_ago_in_words(comment.created_at)}"
-    -##derecha
-    -#  - if @usuario
-    -#    #bloqueUsuario
-    -#      %span
-    -#        = @usuario.username
-    -#      %br/
-    -#      %br
-    -#        %img{src: "#{@usuario.avatar.html_safe if @usuario.avatar.present?}"}
-    -#          %br/
-    -#          %br/
-    -#          = @usuario.rango
-    -#          %br/
-    -#          Comentarios:
-    -#          = @usuario.comments.count
-    -#          %br/
-    -#          Registrado:
-    -#          = @usuario.created_at.to_s( :simple )
-    -#          %br/
-    -#          %br/
-    -#          = link_to 'Bandeja de entrada', recibidos_path
-    -#          = "(#{@usuario.recibidosnuevos})"
-    -#          %br/
-    -#          = link_to 'Mensajes enviados', enviados_path
-    -#          = "(#{@usuario.enviadosnuevos})"
-    -#          %br/
-    -#          %br/
+    #ocultador
+      Ocultar barra lateral
+    #izquierda
+      =render 'commons/last_comments'
+    #derecha
+      = render 'commons/user_area'
     -#    %br/
     -#    %form
     -#      %input#application{:name => "theme", :onclick => "switch_style('normal');return false;", type: "submit", value: "1280*1024"}
     -#        %input#applicationBig{:name => "theme", :onclick => "switch_style('big');return false;", type: "submit", value: "1920*1080"}
     #centro
       = yield
-      .well
-        Hola
       %footer
         %p
           %a{:name => "fondo"}

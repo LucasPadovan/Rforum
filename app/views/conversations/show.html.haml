@@ -41,7 +41,7 @@
             = link_to '', votar_encuesta_path(comentario_id: @primercomentario, negativo: true), remote: true
         - else
         %li
-          %span{id: "totalVotos#{@primercomentario.id.to_s}"}= @primercomentario.likes.size - @primercomentario.dislikes.size
+          %span{id: "totalVotos#{@primercomentario.id.to_s}"}= @primercomentario.likes.length - @primercomentario.dislikes.length
     #firmaEnComentario
       = sanitizar_bbcode(@primercomentario.user.firma)
     %br/
@@ -80,7 +80,7 @@
                 = link_to '', votar_encuesta_path(comentario_id: comment, negativo: true), remote: true
             - else
             %li
-              %span{:id => "totalVotos#{comment.id.to_s}"}= comment.likes.size-comment.dislikes.size
+              %span{:id => "totalVotos#{comment.id.to_s}"}= comment.likes.length-comment.dislikes.length
         #firmaEnComentario
           = sanitizar_bbcode(comment.user.firma)
         #fecharespuesta

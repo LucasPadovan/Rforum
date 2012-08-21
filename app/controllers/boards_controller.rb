@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.includes(:conversations, {conversations: :comments}).all
+    @boards = Board.includes(conversations: [{comments: :user}, :user])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,10 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @board = Board.includes(:conversations).find(params[:id])
+    #TODO: incluir comentarios y usuarios de comentarios, ooo poner los comentarios en una consulta aparte.
+    @board = Board.includes(conversations: [{comments: :user}, :user]).find(params[:id])
+    @father = Board.find(@board.padre) unless @board.padre == 1
+    @childrens = Board.find_all_by_padre(@board.id)
 
     respond_to do |format|
       format.html # show.html.haml

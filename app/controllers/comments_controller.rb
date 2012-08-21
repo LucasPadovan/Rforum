@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.paginate :page => params[:page], :order => 'created_at desc', :per_page => 20
+    @comments = Comment.includes(:conversation, :user).paginate :page => params[:page], :order => 'created_at desc', :per_page => 20
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
-    @comment = Comment.find(params[:id])
+    @comment = Comment.includes(:user).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.haml
