@@ -1,0 +1,44 @@
+%td
+  = link_to board.title, board
+  %div
+    = board.descripcion
+    %br/
+    Categoría:
+    = board.categoria
+    %br/
+  - unless board.conversations.blank?
+    %td
+      - ntemas= board.conversations.length
+      - ncoment= -ntemas
+      - ultimaconv = board.conversations.last
+      - @fechaultcoment = ultimaconv.updated_at
+      - @comentario = ultimaconv.comments.last
+      - board.conversations.each do |conv|
+        - ncoment += conv.comments.length
+        - comentario = conv.comments.last
+        - if @fechaultcoment.to_time <= comentario.created_at.to_time
+          - @comentario = comentario
+          - @fechaultcoment = comentario.created_at
+      = board.conversations.length
+      = "/"
+      = ncoment
+    %td
+      = link_to(@comentario.user.username, @comentario.user)
+      dijo:
+      = normalizar_texto( @comentario.body, 40)
+      %br/
+      En:
+      //aca hay sobrecarga, al hacer comentario.conversation
+      = link_to @comentario.conversation.title, board_conversation_path( :board_id => board, :id => @comentario.conversation) + @comentario.conversation.ultima_pagina+"#"+@comentario.id.to_s
+      %br/
+      A las:
+      = @fechaultcoment.to_s(:detallada)
+  - else
+    %td 0/0
+    %td Sin comentarios todavia
+%td
+  - if es_administrador
+    = link_to 'Edit', edit_board_path(board)
+    %br/
+    = link_to 'Destroy', board, confirm: 'Are you sure?', method: :delete
+    %br/

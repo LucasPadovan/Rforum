@@ -2,67 +2,17 @@
 %h1
   #cabecera Panel principal
 - if current_user
-  .well
-    -#- @last_conversations.each do |x|
-    -#  = x.conversations.last.title unless x.conversations.blank?
-    -#  %br/
-    -#  %br/
-    %table
-      - @boards.each do |board|
-        - if board.padre ==0
-          %tr#principal
-        - else
-          %tr#subforo
-            %td
-              = link_to board.title, board
-              #categoria
-                = board.descripcion
-                %br/
-                Categoría:
-                = board.categoria
-                %br/
-              - unless board.conversations.blank?
-                %td#tyc
-                  - ntemas= board.conversations.length
-                  - ncoment= -ntemas
-                  - ultimaconv = board.conversations.last
-                  - @fechaultcoment = ultimaconv.updated_at
-                  - @comentario = ultimaconv.comments.last
-                  - board.conversations.each do |conv|
-                    - ncoment += conv.comments.length
-                    - comentario = conv.comments.last
-                    - if @fechaultcoment.to_time <= comentario.created_at.to_time
-                      - @comentario = comentario
-                      - @fechaultcoment = comentario.created_at
-                  = board.conversations.length
-                  = "/"
-                  = ncoment
-                %td#ultcoment
-                  = link_to(@comentario.user.username, @comentario.user)
-                  dijo:
-                  = normalizar_texto( @comentario.body, 40)
-                  %br/
-                  En:
-                  //aca hay sobrecarga, al hacer comentario.conversation
-                  = link_to @comentario.conversation.title, board_conversation_path( :board_id => board, :id => @comentario.conversation) + @comentario.conversation.ultima_pagina+"#"+@comentario.id.to_s
-                  %br/
-                  A las:
-                  = @fechaultcoment.to_s(:detallada)
-              - else
-                %td#tyc 0/0
-                %td#ultcoment Sin comentarios todavia
-            %td
-              - if es_administrador
-                = link_to 'Edit', edit_board_path(board)
-                %br/
-                = link_to 'Destroy', board, confirm: 'Are you sure?', method: :delete
-                %br/
-        %tr#separadorForos
-          %td
-          %td
-          %td
-          - if es_administrador
-            %td
+  %table.table
+    - @boards.select{ |b| b.padre == 1 }.each do |board|
+      %tr{style: "background-color: #9c0007;"}= render 'boards/board_table_row', board: board
+      - @boards.select{|b| b.padre == board.id}.each do |sub_board|
+        %tr= render 'boards/board_table_row', board: sub_board
+      -#%tr
+      -#  %td
+      -#  %td
+      -#  %td
+      -#  - if es_administrador
+      -#    %td
   %br/
   - if es_administrador
     = link_to 'Nuevo Foro', new_board_path

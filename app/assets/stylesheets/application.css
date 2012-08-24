@@ -37,8 +37,7 @@ html {
 }
 
 body{
-    margin: 8px;
-    padding-top: 62px;
+    padding-top: 42px;
 }
 
 h1{
@@ -123,110 +122,110 @@ footer p{
     font-size: 9px;
 }
 
-#ocultador{
-    text-align: center;
-    width: 220px;
-    float: right;
-    position: absolute;
-    top: 74px;
-    left: 950px;
-    padding:2px;
-    text-decoration:none;
-    color: #000000;
-    z-index: 2;
-    border-radius:10px;
-    transition: background-color .25s,color .20s;
-    -webkit-transition: background-color .25s,color .20s;
-    -moz-transition: background-color .25s,color .20s;
-    -o-transition: background-color .25s,color .20s;
-}
-#ocultador:hover{
-    border-radius: 10px;
-    background-color: #630007;
-    color: #ffffff;
+/*#ocultador{*/
+    /*text-align: center;*/
+    /*width: 220px;*/
+    /*float: right;*/
+    /*position: absolute;*/
+    /*top: 74px;*/
+    /*left: 950px;*/
+    /*padding:2px;*/
+    /*text-decoration:none;*/
+    /*color: #000000;*/
+    /*z-index: 2;*/
+    /*border-radius:10px;*/
+    /*transition: background-color .25s,color .20s;*/
+    /*-webkit-transition: background-color .25s,color .20s;*/
+    /*-moz-transition: background-color .25s,color .20s;*/
+    /*-o-transition: background-color .25s,color .20s;*/
+/*}*/
+/*#ocultador:hover{*/
+    /*border-radius: 10px;*/
+    /*background-color: #630007;*/
+    /*color: #ffffff;*/
 
-    transition: background-color .25s,color .20s;
-    -webkit-transition: background-color .25s,color .20s;
-    -moz-transition: background-color .25s,color .20s;
-    -o-transition: background-color .25s,color .20s;
-}
-
-
-#izquierda{
-    text-align: center;
-    width: 220px;/*
-    float: right;
-    position: relative; */
-    position: absolute;
-    left: 950px;
-    top: 96px;
-}
-#izquierda a{
-    padding:2px;
-    text-decoration:none;
-    color: #000000;
-    border-radius:10px;
-
-    transition: background-color .25s, color .15s;
-    -webkit-transition: background-color .25s, color .15s;
-    -moz-transition: background-color .25s, color .15s;
-    -o-transition: background-color .25s, color .15s;
-}
-#izquierda a:hover{
-    border-radius: 10px;
-    background-color: #630007;
-    color: #ffffff;
-
-    transition: background-color .25s, color .15s;
-    -webkit-transition: background-color .25s, color .15s;
-    -moz-transition: background-color .25s, color .15s;
-    -o-transition: background-color .25s, color .15s;
-}
+    /*transition: background-color .25s,color .20s;*/
+    /*-webkit-transition: background-color .25s,color .20s;*/
+    /*-moz-transition: background-color .25s,color .20s;*/
+    /*-o-transition: background-color .25s,color .20s;*/
+/*}*/
 
 
-#derecha{  /*izq*/
-    width: 140px; /*12%;*/
-    height: 100%;
-    float: left;
-    position: relative;
-    top: 5px;
-    font-family: verdana, arial, helvetica;
-}
-#derecha a{
-    padding:2px;
-    text-decoration:none;
-    color: #000000;
-    border-radius:10px;
+/*#izquierda{*/
+    /*text-align: center;*/
+    /*width: 220px;*//**/
+    /*float: right;*/
+    /*position: relative; */
+    /*position: absolute;*/
+    /*left: 950px;*/
+    /*top: 96px;*/
+/*}*/
+/*#izquierda a{*/
+    /*padding:2px;*/
+    /*text-decoration:none;*/
+    /*color: #000000;*/
+    /*border-radius:10px;*/
 
-    transition: background-color .25s, color .15s;
-    -webkit-transition: background-color .25s, color .15s;
-    -moz-transition: background-color .25s, color .15s;
-    -o-transition: background-color .25s, color .15s;
-}
-#derecha a:hover{
-    border-radius: 10px;
-    background-color: #630007;
-    color: #ffffff;
+    /*transition: background-color .25s, color .15s;*/
+    /*-webkit-transition: background-color .25s, color .15s;*/
+    /*-moz-transition: background-color .25s, color .15s;*/
+    /*-o-transition: background-color .25s, color .15s;*/
+/*}*/
+/*#izquierda a:hover{*/
+    /*border-radius: 10px;*/
+    /*background-color: #630007;*/
+    /*color: #ffffff;*/
 
-    transition: background-color .25s, color .15s;
-    -webkit-transition: background-color .25s, color .15s;
-    -moz-transition: background-color .25s, color .15s;
-    -o-transition: background-color .25s, color .15s;
-}
+    /*transition: background-color .25s, color .15s;*/
+    /*-webkit-transition: background-color .25s, color .15s;*/
+    /*-moz-transition: background-color .25s, color .15s;*/
+    /*-o-transition: background-color .25s, color .15s;*/
+/*}*/
 
-#centro{
-    position:absolute;
+
+/*#derecha{  *//*izq*/
+    /*width: 140px; *//*12%;*/
+    /*height: 100%;*/
+    /*float: left;*/
+    /*position: relative;*/
+    /*top: 5px;*/
+    /*font-family: verdana, arial, helvetica;*/
+/*}*/
+/*#derecha a{*/
+    /*padding:2px;*/
+    /*text-decoration:none;*/
+    /*color: #000000;*/
+    /*border-radius:10px;*/
+
+    /*transition: background-color .25s, color .15s;*/
+    /*-webkit-transition: background-color .25s, color .15s;*/
+    /*-moz-transition: background-color .25s, color .15s;*/
+    /*-o-transition: background-color .25s, color .15s;*/
+/*}*/
+/*#derecha a:hover{*/
+    /*border-radius: 10px;*/
+    /*background-color: #630007;*/
+    /*color: #ffffff;*/
+
+    /*transition: background-color .25s, color .15s;*/
+    /*-webkit-transition: background-color .25s, color .15s;*/
+    /*-moz-transition: background-color .25s, color .15s;*/
+    /*-o-transition: background-color .25s, color .15s;*/
+/*}*/
+
+/*#centro{*/
+    /*position:absolute;*/
     /*width: 65%;*/
-    width: 750px;
-    left: 153px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
-}
+    /*width: 750px;*/
+    /*left: 153px;*/
+    /*padding-left: 20px;*/
+    /*padding-right: 20px;*/
+    /*background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;*/
+/*}*/
 
-#centro img{
-    max-width: 600px;
-}
+/*#centro img{*/
+    /*max-width: 600px;*/
+/*}*/
 
 .nicEdit-main{
     background-color: #ffffff;
