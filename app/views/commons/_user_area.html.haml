@@ -1,25 +1,16 @@
 - if @usuario
-  #bloqueUsuario
-    %span
-      = @usuario.username
-    %br/
-    %br
-      %img{src: "#{@usuario.avatar.html_safe if @usuario.avatar.present?}"}
-        %br/
-        %br/
-        = @usuario.rango
-        %br/
-        Comentarios:
-        = @usuario.comments.length
-        %br/
-        Registrado:
-        = @usuario.created_at.to_s( :simple )
-        %br/
-        %br/
-        = link_to 'Bandeja de entrada', recibidos_path
-        = "(#{@usuario.recibidosnuevos})"
-        %br/
-        = link_to 'Mensajes enviados', enviados_path
-        = "(#{@usuario.enviadosnuevos})"
-        %br/
-        %br/
+  %h3= @usuario.username
+  %img{src: "#{@usuario.avatar.html_safe if @usuario.avatar.present?}"}
+  %p= @usuario.rango
+  %p
+    Comentarios:
+    = @usuario.comments.length
+  %p
+    Registrado:
+    = @usuario.created_at.to_s( :simple )
+  %p
+    = link_to 'Bandeja de entrada', recibidos_path
+    = "(#{@usuario.recibidosnuevos})"
+  %p
+    = link_to 'Mensajes enviados', enviados_path
+    = "(#{@usuario.enviadosnuevos})"

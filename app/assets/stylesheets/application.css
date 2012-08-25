@@ -36,91 +36,92 @@ html {
         background-size: cover;
 }
 
-body{
+.body{
     padding-top: 42px;
+    background-color: none;
 }
 
-h1{
-    color: #ffffff;
-    text-align: left;
-}
-h1 div#cabecera{
-    background-color: #9c0007;
-    text-align:center;
-    border-radius: 15px;
-    padding: 5px;
-}
+/*h1{*/
+    /*color: #ffffff;*/
+    /*text-align: left;*/
+/*}*/
+/*h1 div#cabecera{*/
+    /*background-color: #9c0007;*/
+    /*text-align:center;*/
+    /*border-radius: 15px;*/
+    /*padding: 5px;*/
+/*}*/
 
-div#titulo{
-    background-color: #9c0007;
-    color: #ffffff;
-    border-radius: 10px;
-    border: 5px solid #9c0007;
-}
-#banner{
-    background-color: #9c0007;
-    height: 50px;
-    width: 100%;
-    text-align: center;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 3;
-}
-#banner h1{
-    color: #ffffff;
-    text-shadow: 3px 3px 3px #ad615d;
-    /*font-family: freestylescript;
-    font-size: 38px;*/
-    height: 10px;
-    padding: 00px;
-    text-align: center;
-}
+/*div#titulo{*/
+    /*background-color: #9c0007;*/
+    /*color: #ffffff;*/
+    /*border-radius: 10px;*/
+    /*border: 5px solid #9c0007;*/
+/*}*/
+/*#banner{*/
+    /*background-color: #9c0007;*/
+    /*height: 50px;*/
+    /*width: 100%;*/
+    /*text-align: center;*/
+    /*position: fixed;*/
+    /*left: 0px;*/
+    /*top: 0px;*/
+    /*z-index: 3;*/
+/*}*/
+/*#banner h1{*/
+    /*color: #ffffff;*/
+    /*text-shadow: 3px 3px 3px #ad615d;*/
+    /*font-family: freestylescript;*/
+    /*font-size: 38px;*/
+    /*height: 10px;*/
+    /*padding: 00px;*/
+    /*text-align: center;*/
+/*}*/
 
-div #logueo{
-    float: right;
-    height: 22px;
-    padding-top: 4px;
-    background-color: #000000;
-    border-top: 2px solid #630007;
-}
-div #menu{
-    height: 22px;
-    padding-top: 4px;
+/*div #logueo{*/
+    /*float: right;*/
+    /*height: 22px;*/
+    /*padding-top: 4px;*/
+    /*background-color: #000000;*/
+    /*border-top: 2px solid #630007;*/
+/*}*/
+/*div #menu{*/
+    /*height: 22px;*/
+    /*padding-top: 4px;*/
     /*background-color: #E2F0FF;*/
-    background-color: #000000;
-    border-top: 2px solid #630007;
+    /*background-color: #000000;*/
+    /*border-top: 2px solid #630007;*/
 
-}
+/*}*/
 
-#banner a{
-    text-decoration: none;
-    background-color: #9c0007;
-    border: 1px solid #333333;
-    color: #ffffff;
-    padding: 1px 4px 1px 4px;
-    border-radius: 10px;
+/*#banner a{*/
+    /*text-decoration: none;*/
+    /*background-color: #9c0007;*/
+    /*border: 1px solid #333333;*/
+    /*color: #ffffff;*/
+    /*padding: 1px 4px 1px 4px;*/
+    /*border-radius: 10px;*/
 
-    transition: background-color .25s, border .25s,color .20s;
-    -webkit-transition: background-color .25s, border .25s,color .20s;
-    -moz-transition: background-color .25s, border .25s,color .20s;
-    -o-transition: background-color .25s, border .25s,color .20s;
-}
-#banner a:hover{
-    background-color: #420007;
-    border: 1px solid #9c0007;
-    color: #ffffff;
+    /*transition: background-color .25s, border .25s,color .20s;*/
+    /*-webkit-transition: background-color .25s, border .25s,color .20s;*/
+    /*-moz-transition: background-color .25s, border .25s,color .20s;*/
+    /*-o-transition: background-color .25s, border .25s,color .20s;*/
+/*}*/
+/*#banner a:hover{*/
+    /*background-color: #420007;*/
+    /*border: 1px solid #9c0007;*/
+    /*color: #ffffff;*/
 
-    transition: background-color .25s, border .25s,color .20s;
-    -webkit-transition: background-color .25s, border .25s,color .20s;
-    -moz-transition: background-color .25s, border .25s,color .20s;
-    -o-transition: background-color .25s, border .25s,color .20s;
-}
+    /*transition: background-color .25s, border .25s,color .20s;*/
+    /*-webkit-transition: background-color .25s, border .25s,color .20s;*/
+    /*-moz-transition: background-color .25s, border .25s,color .20s;*/
+    /*-o-transition: background-color .25s, border .25s,color .20s;*/
+/*}*/
 
-footer p{
-    text-align: right;
-    font-size: 9px;
-}
+/*footer p{*/
+    /*text-align: right;*/
+    /*font-size: 9px;*/
+/*}*/
 
 /*#ocultador{*/
     /*text-align: center;*/
@@ -227,64 +228,54 @@ footer p{
     /*max-width: 600px;*/
 /*}*/
 
-.nicEdit-main{
-    background-color: #ffffff;
-}
+/*.nicEdit-main{*/
+    /*background-color: #ffffff;*/
+/*}*/
 
-div#ultimoscomentarios{
-    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
-    border-radius: 15px;
-    padding: 10px;
-}
-#ultimoscomentarios span{
-    background-color: #9c0007;
-    color: #ffffff;
-    padding: 3px;
-    border-radius: 10px;
-}
+/*div#ultimoscomentarios{*/
+    /*background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;*/
+    /*border-radius: 15px;*/
+    /*padding: 10px;*/
+/*}*/
+/*#ultimoscomentarios span{*/
+    /*background-color: #9c0007;*/
+    /*color: #ffffff;*/
+    /*padding: 3px;*/
+    /*border-radius: 10px;*/
+/*}*/
 
-#ultimoscomentarios #lineaUltCom{
-    font-size: 11px;
-    font-style: italic;
-    color: #ffffff;
-    background-color: #000000;
-    border-radius: 8px;
-    padding: 3px;
-    margin-top: 3px;
-    margin-bottom: 2px;
-}
-#ultimoscomentarios #lineaUltCom a{
-    color: #ffffff;
-    font-weight: bold;
-}
+/*#ultimoscomentarios #lineaUltCom{*/
+    /*font-size: 11px;*/
+    /*font-style: italic;*/
+    /*color: #ffffff;*/
+    /*background-color: #000000;*/
+    /*border-radius: 8px;*/
+    /*padding: 3px;*/
+    /*margin-top: 3px;*/
+    /*margin-bottom: 2px;*/
+/*}*/
+/*#ultimoscomentarios #lineaUltCom a{*/
+    /*color: #ffffff;*/
+    /*font-weight: bold;*/
+/*}*/
 
 
-div#bloqueUsuario{
-    font-size: 10px;
-    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
-    border-radius: 15px;
-    padding: 5px;
-}
-#bloqueUsuario span{
-    font-size: 17px;
-    font-weight: bold;
-    position: relative;
-    left: 23%;
-    background-color: #9c0007;
-    color: #ffffff;
-    padding: 2px;
-    border-radius: 10px;
-}
-#bloqueUsuario img{
-    max-width: 120px;
-}
-
-div#reproductor{
-    text-align: center;
-    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
-    border-radius: 15px;
-    padding: 5px;
-}
-#reproductor object{
-    z-index: 1;
-}
+/*div#bloqueUsuario{*/
+    /*font-size: 10px;*/
+    /*background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;*/
+    /*border-radius: 15px;*/
+    /*padding: 5px;*/
+/*}*/
+/*#bloqueUsuario span{*/
+    /*font-size: 17px;*/
+    /*font-weight: bold;*/
+    /*position: relative;*/
+    /*left: 23%;*/
+    /*background-color: #9c0007;*/
+    /*color: #ffffff;*/
+    /*padding: 2px;*/
+    /*border-radius: 10px;*/
+/*}*/
+/*#bloqueUsuario img{*/
+    /*max-width: 120px;*/
+/*}*/

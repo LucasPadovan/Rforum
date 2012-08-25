@@ -4,50 +4,49 @@
     %title
       Foro de cursos del CETEM
     = stylesheet_link_tag    "application", rel:"stylesheet", title:"normal"
-    -#%link{:href => "http://reproductoranimedake.site90.net/Semidioses5g/RforumBig.css", :rel => "alternate stylesheet", :title => "big", :type => "text/css"}/
     = javascript_include_tag "application"
     = csrf_meta_tags
     %script{:src => "http://code.jquery.com/jquery-latest.js", :type => "text/javascript"}
-    %script{:src => "http://reproductoranimedake.site90.net/Semidioses5g/DynamicSS.js", :type => "text/javascript"}
     %script{:src => "http://js.nicedit.com/nicEdit-latest.js", :type => "text/javascript"}
     :javascript
       bkLib.onDomLoaded(nicEditors.allTextAreas);
-    -#%script{:language => "JavaScript"}
-    -#  verificarResolucion()
-  %body
+  %body.body
     .navbar.navbar-fixed-top
       .navbar-inner
         .pull-left.offset1
           %h1 Foro de cursos del CETEM
         %ul.nav
+          %li.divider-vertical
           %li= link_to "Foro", boards_path
+          %li.divider-vertical
           %li= link_to "Usuarios", users_path
+          %li.divider-vertical
           %li= link_to "Comentarios", comments_path if es_administrador
         .pull-right
           %ui.nav
+            %li.divider-vertical
             - if current_user
               %li
                 - @usuario = get_usuario
               %li= link_to "Editar perfil", edit_user_path(current_user.id)
+              %li.divider-vertical
               %li= link_to "Logout", :logout
             - else
               %li= link_to "Registrarse", new_user_path
+              %li.divider-vertical
               %li= link_to "Login", :login
-    .row-fluid
-      .span2
-        .pull-right
-          = render 'commons/user_area'
-      .span7{style: "background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ; padding: 10px;"}
-        = yield
-        %footer
-          %p
-            %a{:name => "fondo"}
-              RForum plataforma de foros de codigo abierto y personalizable. Contacto: lucaslockon@gmail.com
-      .span2
-        #ocultador
-          Ocultar barra lateral
-        #izquierda=render 'commons/last_comments'
-        -#%br/
-        -#%form
-        -#  %input#application{:name => "theme", :onclick => "switch_style('normal');return false;", type: "submit", value: "1280*1024"}
-        -#    %input#applicationBig{:name => "theme", :onclick => "switch_style('big');return false;", type: "submit", value: "1920*1080"}
+    .container-fluid
+      .row-fluid
+        .span2
+          .well.pull-right
+            = render 'commons/user_area'
+        .span7{style: "background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ; padding: 10px;"}
+          = yield
+          %footer
+            %p
+              %a{:name => "fondo"}
+                RForum plataforma de foros de codigo abierto y personalizable. Contacto: lucaslockon@gmail.com
+        .span2
+          #ocultador
+            Ocultar barra lateral
+          #izquierda= render 'commons/last_comments'

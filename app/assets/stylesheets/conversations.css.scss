@@ -1,191 +1,191 @@
-// Place all the styles related to the conversations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-#primercomentario{
-    width: 98%;
-    border: 3px solid #9c0007;
-    border-collapse: collapse;
-    border-radius: 15px;
-    padding:5px;
-    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
-}
-
-#cuerpoPrimerComentario{
-    min-height: 285px;
-    border-left: 2px dashed #000000;
-    width: auto;
-    margin-left: 165px;
-    padding: 5px;
-}
-#cuerpoPrimerComentario div#firmaEnComentario{
-    text-align: center;
-    border-top: 2px dashed #000000;
-    padding-top: 5px;
-}
-#cuerpoPrimerComentario #fecha{
-    font-size: 10px;
-    font-style: italic;
-    text-align: right;
-}
-#cuerpoPrimerComentario div{
-    max-width: 570px;
-}
-#cuerpoPrimerComentario img{
-    max-width: 550px;
-}
-#usuarioEnPrimerComentario{
-    position: relative;
-    top: -15px;
-    width: 160px;
-    float: left;
-}
-#usuarioEnPrimerComentario img{
-    border: 2px solid #9c0007;
-    border-radius: 5px;
-    max-width: 140px;
-    max-height: 150px;
-}
-
-
-#comentariospar{
-    width: 98%;
-    border: 3px solid #000000;
-    border-collapse: collapse;
-    border-radius: 15px;
-    padding:5px;
-    margin-top: 5px;
-    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
-}
-#comentariospar #cuerpoComentario{
-    border-right: 2px dashed #9c0007;
-}
-#comentariospar #cuerpoComentario div#firmaEnComentario{
-    border-top: 2px dashed #9c0007;
-}
-#comentariospar #usuarioEnComentario img{
-    border: 2px solid #9c0007;
-}
-
-#comentariosimpar{
-    width: 98%;
-    border: 3px solid #9c0007;
-    border-collapse: collapse;
-    border-radius: 15px;
-    padding:5px;
-    margin-top: 5px;
-    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
-}
-#usuarioEnComentario{
-    position: relative;
-    top: -15px;
-    width: 160px;
-    float: right;
-    text-align: right;
-}
-#usuarioEnComentario img{
-    border: 2px solid #000000;
-    border-radius: 5px;
-    max-width: 140px;
-    max-height: 150px;
-}
-
-#cuerpoComentario {
-    min-height: 285px;
-    width: 560px;
-    float: none;
-    border-right: 2px dashed #000000;
-    padding: 5px;
-}
-#cuerpoComentario div#firmaEnComentario{
-    border-top: 2px dashed #000000;
-    text-align: center;
-    padding-top: 5px;
-}
-#cuerpoComentario div{
-    max-width: 570px;
-}
-#cuerpoComentario img{
-    max-width: 550px;
-}
-
-#fecharespuesta{
-    font-size: 10px;
-    font-style: italic;
-}
-
-
-#votacion{
-    position: relative;
-    left: -40px;
-}
-#votacion2{
-    position: relative;
-    left: 420px;
-
-}
-#votos a, #votos li{
-    display:inline-block;
-    height:36px;
-    position:relative;
-}
-
-#id_contenedor_link_voto_m a{
-    width:38px;
-    background: url('botones.png') 0px 0px;
-}
-#id_contenedor_link_voto_m a:hover{
-    height: 36px;
-    background: url('botones.png') 0px -43px;
-}
-#id_contenedor_link_voto_- a{
-    left:-21px;
-    width:32px;
-    background: url('botones.png') 38px 0px;
-}
-#id_contenedor_link_voto_- a:hover{
-    background: url('botones.png') 38px -43px;
-}
-
-#votacion span{
-    position:absolute;
-    top: -5px;
-    left: -10px;
-    background-color:#9c0007;
-    padding: 5px;
-    border:#9c0007 solid 2px;
-    margin: 10px;
-    border-radius: 10px;
-}
-#votacion2 span{
-    position:absolute;
-    top: -5px;
-    left: -30px;
-    background-color:#9c0007;
-    padding: 5px;
-    border:#9c0007 solid 2px;
-    margin: 10px;
-    border-radius: 10px;
-}
-
-#barrabbcode{
-    color: #333;
-    line-height: 18px;
-    overflow: hidden;
-    width: 97%;
-    border: 1px solid #CCC;
-    border-image: initial;
-    background-color: #EFEFEF;
-    margin: 2px;
-    padding: 3px;
-    text-align: center;
-}
-#barrabbcode span{
-    font-weight:bold;
-    padding: 2px;
-    border: 1px solid #EFEFEF;
-}
-#barrabbcode span:hover{
-    font-weight:bold;
-    background-color: #dad9d9;
-    border: 1px solid #c7c6c6;
-}
+//// Place all the styles related to the conversations controller here.
+//// They will automatically be included in application.css.
+//// You can use Sass (SCSS) here: http://sass-lang.com/
+//#primercomentario{
+//    width: 98%;
+//    border: 3px solid #9c0007;
+//    border-collapse: collapse;
+//    border-radius: 15px;
+//    padding:5px;
+//    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
+//}
+//
+//#cuerpoPrimerComentario{
+//    min-height: 285px;
+//    border-left: 2px dashed #000000;
+//    width: auto;
+//    margin-left: 165px;
+//    padding: 5px;
+//}
+//#cuerpoPrimerComentario div#firmaEnComentario{
+//    text-align: center;
+//    border-top: 2px dashed #000000;
+//    padding-top: 5px;
+//}
+//#cuerpoPrimerComentario #fecha{
+//    font-size: 10px;
+//    font-style: italic;
+//    text-align: right;
+//}
+//#cuerpoPrimerComentario div{
+//    max-width: 570px;
+//}
+//#cuerpoPrimerComentario img{
+//    max-width: 550px;
+//}
+//#usuarioEnPrimerComentario{
+//    position: relative;
+//    top: -15px;
+//    width: 160px;
+//    float: left;
+//}
+//#usuarioEnPrimerComentario img{
+//    border: 2px solid #9c0007;
+//    border-radius: 5px;
+//    max-width: 140px;
+//    max-height: 150px;
+//}
+//
+//
+//#comentariospar{
+//    width: 98%;
+//    border: 3px solid #000000;
+//    border-collapse: collapse;
+//    border-radius: 15px;
+//    padding:5px;
+//    margin-top: 5px;
+//    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
+//}
+//#comentariospar #cuerpoComentario{
+//    border-right: 2px dashed #9c0007;
+//}
+//#comentariospar #cuerpoComentario div#firmaEnComentario{
+//    border-top: 2px dashed #9c0007;
+//}
+//#comentariospar #usuarioEnComentario img{
+//    border: 2px solid #9c0007;
+//}
+//
+//#comentariosimpar{
+//    width: 98%;
+//    border: 3px solid #9c0007;
+//    border-collapse: collapse;
+//    border-radius: 15px;
+//    padding:5px;
+//    margin-top: 5px;
+//    background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ;
+//}
+//#usuarioEnComentario{
+//    position: relative;
+//    top: -15px;
+//    width: 160px;
+//    float: right;
+//    text-align: right;
+//}
+//#usuarioEnComentario img{
+//    border: 2px solid #000000;
+//    border-radius: 5px;
+//    max-width: 140px;
+//    max-height: 150px;
+//}
+//
+//#cuerpoComentario {
+//    min-height: 285px;
+//    width: 560px;
+//    float: none;
+//    border-right: 2px dashed #000000;
+//    padding: 5px;
+//}
+//#cuerpoComentario div#firmaEnComentario{
+//    border-top: 2px dashed #000000;
+//    text-align: center;
+//    padding-top: 5px;
+//}
+//#cuerpoComentario div{
+//    max-width: 570px;
+//}
+//#cuerpoComentario img{
+//    max-width: 550px;
+//}
+//
+//#fecharespuesta{
+//    font-size: 10px;
+//    font-style: italic;
+//}
+//
+//
+//#votacion{
+//    position: relative;
+//    left: -40px;
+//}
+//#votacion2{
+//    position: relative;
+//    left: 420px;
+//
+//}
+//#votos a, #votos li{
+//    display:inline-block;
+//    height:36px;
+//    position:relative;
+//}
+//
+//#id_contenedor_link_voto_m a{
+//    width:38px;
+//    background: url('botones.png') 0px 0px;
+//}
+//#id_contenedor_link_voto_m a:hover{
+//    height: 36px;
+//    background: url('botones.png') 0px -43px;
+//}
+//#id_contenedor_link_voto_- a{
+//    left:-21px;
+//    width:32px;
+//    background: url('botones.png') 38px 0px;
+//}
+//#id_contenedor_link_voto_- a:hover{
+//    background: url('botones.png') 38px -43px;
+//}
+//
+//#votacion span{
+//    position:absolute;
+//    top: -5px;
+//    left: -10px;
+//    background-color:#9c0007;
+//    padding: 5px;
+//    border:#9c0007 solid 2px;
+//    margin: 10px;
+//    border-radius: 10px;
+//}
+//#votacion2 span{
+//    position:absolute;
+//    top: -5px;
+//    left: -30px;
+//    background-color:#9c0007;
+//    padding: 5px;
+//    border:#9c0007 solid 2px;
+//    margin: 10px;
+//    border-radius: 10px;
+//}
+//
+//#barrabbcode{
+//    color: #333;
+//    line-height: 18px;
+//    overflow: hidden;
+//    width: 97%;
+//    border: 1px solid #CCC;
+//    border-image: initial;
+//    background-color: #EFEFEF;
+//    margin: 2px;
+//    padding: 3px;
+//    text-align: center;
+//}
+//#barrabbcode span{
+//    font-weight:bold;
+//    padding: 2px;
+//    border: 1px solid #EFEFEF;
+//}
+//#barrabbcode span:hover{
+//    font-weight:bold;
+//    background-color: #dad9d9;
+//    border: 1px solid #c7c6c6;
+//}

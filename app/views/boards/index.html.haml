@@ -1,20 +1,11 @@
 = notice
 %h1
-  #cabecera Panel principal
-- if current_user
-  %table.table
-    - @boards.select{ |b| b.padre == 1 }.each do |board|
-      %tr{style: "background-color: #9c0007;"}= render 'boards/board_table_row', board: board
-      - @boards.select{|b| b.padre == board.id}.each do |sub_board|
-        %tr= render 'boards/board_table_row', board: sub_board
-      -#%tr
-      -#  %td
-      -#  %td
-      -#  %td
-      -#  - if es_administrador
-      -#    %td
-  %br/
-  - if es_administrador
-    = link_to 'Nuevo Foro', new_board_path
-- else
-  Por favor logueate o registrate para ver el contenido
+#cabecera Panel principal
+%table.table
+  - @boards.select{ |b| b.padre == 1 }.each do |board|
+    %tr{style: "background-color: #E2F0FF;"}= render 'boards/board_table_row', board: board
+    - @boards.select{|b| b.padre == board.id}.each do |sub_board|
+      %tr= render 'boards/board_table_row', board: sub_board
+%br/
+- if es_administrador
+  = link_to 'Nuevo Foro', new_board_path
