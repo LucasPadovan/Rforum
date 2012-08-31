@@ -40,6 +40,9 @@ html {
     padding-top: 42px;
     background-color: none;
 }
+.nicEdit-main{
+    background-color: #ffffff;
+}
 
 /*h1{*/
     /*color: #ffffff;*/
@@ -226,10 +229,6 @@ html {
 
 /*#centro img{*/
     /*max-width: 600px;*/
-/*}*/
-
-/*.nicEdit-main{*/
-    /*background-color: #ffffff;*/
 /*}*/
 
 /*div#ultimoscomentarios{*/
