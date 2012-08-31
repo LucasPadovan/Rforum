@@ -1,6 +1,5 @@
-%h1
-  #titulo
-    Mensajes enviados de #{get_usuario.username}
+.label.label-important
+  %h1 = "Mensajes enviados de #{get_usuario.username}"
 - if @enviados.exists?
   %table#foros
     %tr#principal

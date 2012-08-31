@@ -19,8 +19,8 @@
     %br/
     = f.text_field :titulo
   = render 'commons/textarea_tools'
-    = fields_for(@message) do |m|
-      %div.field
-        = m.text_area(:body, :size=>"90x20")
+  = fields_for(@message) do |m|
+    %div.field
+      = m.text_area(:body, :size=>"90x20")
   %div.actions
     = f.submit(:value => "Enviar")
