@@ -1,8 +1,8 @@
 //TODO: llevar a un partial la vista de los comentarios y/o, no dividir por primer comentario/otros comentarios pero dejar la diferenciacion de estilos con css algo como css:first style.
-- if notice.present?
+- if notice
   %p#notice= notice
-%h1
-  #titulo= @conversation.title
+.label.label-important
+  %h1= @conversation.title
 = link_to 'Panel Principal', boards_path
 - unless @conversation.board.padre == 1
   - board = Board.find(@conversation.board.padre)
@@ -13,8 +13,9 @@
 %br/
 %p= will_paginate @otroscomentarios
 - @primercomentario
-#primercomentario
-  %dl#usuarioEnPrimerComentario
+
+#primercomentario.well
+  .span2
     %span
       %a{name: @primercomentario.id.to_s}
     %img{src: @primercomentario.user.avatar}
@@ -30,7 +31,7 @@
       %br/
       - unless @primercomentario.user == get_usuario
         = link_to "Enviar mensaje", new_mensajepersonal_path(destinatario_id: @primercomentario.user.id)
-  #cuerpoPrimerComentario
+  .span9
     = sanitizar_bbcode(@primercomentario.body)
     #votacion
       %ul#votos
@@ -49,11 +50,13 @@
       Creado: #{@primercomentario.created_at.to_s(:detallada)}
       - if es_administrador || @primercomentario.user == get_usuario
         = "|"
-        = link_to "Editar", edit_comment_path(@primercomentario)
+        = link_to "Editar", edit_comment_path(@primercomentario), class: "btn btn-inverse btn-mini"
+  .clearfix
+
 - @otroscomentarios.each do |comment|
   - unless comment == @primercomentario
-    %div{id: cycle('comentariospar', 'comentariosimpar')}
-      %dl#usuarioEnComentario
+    %div.well{id: cycle('comentariospar', 'comentariosimpar')}
+      .span2
         %span
           %a{name: comment.id.to_s}
         %img{src: comment.user.avatar}
@@ -69,7 +72,7 @@
           %br/
           - unless comment.user == get_usuario
             = link_to "Enviar mensaje", new_mensajepersonal_url(destinatario_id: comment.user)
-      #cuerpoComentario
+      .span9
         = sanitizar_bbcode(comment.body)
         #votacion2
           %ul#votos
@@ -87,9 +90,9 @@
           Respuesta realizada a las: #{comment.created_at.to_s(:detallada)}
           - if es_administrador || comment.user==get_usuario
             = "|"
-            = link_to "Editar", edit_comment_path(comment)
-          %br/
-= link_to 'Responder', reply_board_conversation_url(board_id: @board, id: @conversation)
+            = link_to "Editar", edit_comment_path(comment), class: "btn btn-inverse btn-mini"
+      .clearfix
+= link_to 'Responder', reply_board_conversation_url(board_id: @board, id: @conversation), class: "btn btn-primary"
 = "|"
 = link_to  @conversation.board.title, @conversation.board
 %p= will_paginate @otroscomentarios

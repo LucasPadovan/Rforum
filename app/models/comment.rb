@@ -16,7 +16,7 @@ class Comment < ActiveRecord::Base
   class << self
 
     def ultimos_comentarios
-      Conversation.order('updated_at DESC').includes(:comments, :board).first(10)
+      Conversation.order('updated_at DESC').includes([comments: :user], :board).first(10)
     end
 
     def ultimo(idconversation)

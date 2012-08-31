@@ -153,3 +153,14 @@ table {
     .span#{$i} { @include tableColumns($i); }
   }
 }
+
+.table-no-lr-border {
+  background-color: white;
+  tr, th, td {
+    border-left: none;
+    vertical-align: middle;
+  }
+  tbody tr.label:hover td, tbody tr:hover th {
+    background-color: inherit;
+  }
+}

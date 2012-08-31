@@ -15,38 +15,33 @@
       .navbar-inner
         .pull-left.offset1
           %h1 Foro de cursos del CETEM
-        %ul.nav
-          %li.divider-vertical
-          %li= link_to "Foro", boards_path
-          %li.divider-vertical
-          %li= link_to "Usuarios", users_path
-          %li.divider-vertical
-          %li= link_to "Comentarios", comments_path if es_administrador
+        .nav.btn-toolbar
+          .btn-group
+            = link_to "Foro", boards_path, class: "btn btn-inverse"
+            = link_to "Usuarios", users_path, class: "btn btn-inverse"
+            - if es_administrador
+              = link_to "Comentarios", comments_path, class: "btn btn-inverse"
         .pull-right
-          %ui.nav
-            %li.divider-vertical
-            - if current_user
-              %li
+          .nav.btn-toolbar
+            .btn-group
+              - if current_user
                 - @usuario = get_usuario
-              %li= link_to "Editar perfil", edit_user_path(current_user.id)
-              %li.divider-vertical
-              %li= link_to "Logout", :logout
-            - else
-              %li= link_to "Registrarse", new_user_path
-              %li.divider-vertical
-              %li= link_to "Login", :login
+                = link_to "Editar perfil", edit_user_path(current_user.id), class: "btn btn-inverse"
+                = link_to "Logout", :logout, class: "btn btn-danger"
+              - else
+                = link_to "Registrarse", new_user_path, class: "btn btn-primary"
+                = link_to "Login", :login, class: "btn btn-inverse"
     .container-fluid
       .row-fluid
         .span2
-          .well.pull-right
-            = render 'commons/user_area'
+          = render 'commons/user_area'
         .span7{style: "background: url('http://i264.photobucket.com/albums/ii190/zeropetroquimico/Foro%20semidioses/fondoc.png') repeat ; padding: 10px;"}
           = yield
-          %footer
+          %footer.pull-right
             %p
               %a{:name => "fondo"}
                 RForum plataforma de foros de codigo abierto y personalizable. Contacto: lucaslockon@gmail.com
         .span2
-          #ocultador
+          #ocultador.btn.btn-inverse.btn-small
             Ocultar barra lateral
           #izquierda= render 'commons/last_comments'
