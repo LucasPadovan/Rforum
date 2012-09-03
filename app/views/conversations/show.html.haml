@@ -30,7 +30,7 @@
       %br/
       %br/
       - unless @primercomentario.user == get_usuario
-        = link_to "Enviar mensaje", new_mensajepersonal_path(destinatario_id: @primercomentario.user.id)
+        = link_to "Enviar mensaje", new_mensajepersonal_path(destinatario_id: @primercomentario.user.id), class: "btn btn-warning btn-mini"
   .span9
     = sanitizar_bbcode(@primercomentario.body)
     #votacion
@@ -71,7 +71,7 @@
           %br/
           %br/
           - unless comment.user == get_usuario
-            = link_to "Enviar mensaje", new_mensajepersonal_url(destinatario_id: comment.user)
+            = link_to "Enviar mensaje", new_mensajepersonal_url(destinatario_id: comment.user), class: "btn btn-warning btn-mini"
       .span9
         = sanitizar_bbcode(comment.body)
         #votacion2

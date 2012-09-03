@@ -1,23 +1,16 @@
 .label.label-important
-  %h1 = "Mensajes enviados de #{get_usuario.username}"
+  %h1= "Mensajes enviados de #{get_usuario.username}"
 - if @enviados.exists?
-  %table#foros
-    %tr#principal
-      %td
-      %td
-      %td
+  %br/
+  %table.table.table-bordered.table-no-lr-border
     - @enviados.each do |mensajepersonal|
-      %tr#lineaPm
+      %tr
         %td
-          Mensaje:#{link_to normalizar_texto(mensajepersonal.titulo,100), mensajepersonal}
-          %br/
-          Para:-------:#{mensajepersonal.destinatario.username}:-------:
+          %h3= link_to normalizar_texto(mensajepersonal.titulo,100), mensajepersonal
+          Para
+          %span.badge.badge-info= mensajepersonal.destinatario.username
         %td
           A las: #{mensajepersonal.created_at.to_s(:detallada)}
-        %td= link_to 'Eliminar', mensajepersonal, confirm: 'Estás seguro?', method: :delete
-    %tr#principal
-      %td
-      %td
-      %td
+        %td= link_to 'Eliminar', mensajepersonal, confirm: 'Estás seguro?', method: :delete, class: "btn btn-danger btn-mini"
 - else
   Aún no has enviado ningun mensaje.

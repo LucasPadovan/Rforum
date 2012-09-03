@@ -1,8 +1,9 @@
-%p#notice= notice
+- if notice
+  %p#notice= notice
 %h1
   #titulo
     Perfil de #{@user.username}
-= link_to "Enviar mensaje", new_mensajepersonal_url(destinatario_id: @user)
+= link_to "Enviar mensaje", new_mensajepersonal_url(destinatario_id: @user), class: "btn btn-warning btn-mini"
 %p
   %b Nombre de Usuario:
   = @user.username

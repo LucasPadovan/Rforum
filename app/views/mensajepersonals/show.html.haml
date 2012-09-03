@@ -13,7 +13,7 @@
     .well
       = sanitizar_bbcode(message.body)
   .row-fluid
-    .label.label-inverse= render 'commons/textarea_tools'
+    = render 'commons/textarea_tools'
     = form_for Message.new, :url => {:action => 'save_reply'} do |f|
       = f.text_area :body, class: "input-xxlarge", style: "min-heigth: 75px;"
       = f.submit "Responder", disable_with: "Enviando respuesta...", class: "btn btn-primary"

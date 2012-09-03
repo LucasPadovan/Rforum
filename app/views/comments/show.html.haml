@@ -1,16 +1,16 @@
-%p#notice= notice
+-if notice
+  %p#notice= notice
 %p
-  %b Id:
+  %b Número de comentario:
   = @comment.id
 %p
   %b Usuario:
-  = @comment.user.username
+  %span.badge.badge-info= @comment.user.username
 %p
   %b Conversacion:
-  = @comment.conversation.title
-%p
-  %b Cuerpo:
+  = link_to @comment.conversation.title, [@comment.conversation.board, @comment.conversation]
+.well
   = sanitize(BBCoder.new(@comment.body).to_html.html_safe)
-= link_to 'Editar', edit_comment_path(@comment)
-= "|"
-= link_to 'Volver', comments_path
+.btn-group
+  = link_to 'Editar', edit_comment_path(@comment), class: "btn btn-inverse btn-mini"
+  = link_to 'Volver', comments_path, class: "btn btn-mini"

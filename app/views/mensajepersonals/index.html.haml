@@ -1,18 +1,17 @@
 .label.label-important
   %h1 Listado de mensajes personales
-%table#foros
-  %tr#principal
+%hr
+%table.table.table-bordered.table-no-lr-border
+  %tr.label.label-inverse
     %th Remitente
     %th Destinatario
     %th Titulo
     %th Cuerpo
     %th
-    %th
   - @mensajepersonals.each do |mensajepersonal|
-    %tr#lineaPM
+    %tr
       %td= mensajepersonal.remitente.username
       %td= mensajepersonal.destinatario.username
-      %td= mensajepersonal.titulo
+      %td= link_to mensajepersonal.titulo, mensajepersonal
       %td= normalizar_texto(mensajepersonal.messages.first.body, 40) unless mensajepersonal.messages.blank?
-      %td= link_to 'Ver', mensajepersonal
-      %td= link_to 'Eliminar', mensajepersonal, confirm: 'Estas seguro?', method: :delete
+      %td= link_to 'Eliminar', mensajepersonal, confirm: 'Estas seguro?', method: :delete, class: "btn btn-danger btn-mini"

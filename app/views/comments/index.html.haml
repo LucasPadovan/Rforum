@@ -1,22 +1,21 @@
-%h1
-  #titulo Comentarios
-%table
-  %tr
+.label.label-important
+  %h1 Comentarios
+%hr
+%table.table.table-bordered.table-no-lr-border
+  %tr.label.label-inverse
     %th Id
     %th Usuario
     %th Conversacion
     %th Cuerpo
-    %th
-    %th
     %th
   - @comments.each do |comment|
     %tr
       %td= comment.id
       %td= comment.user.username
       %td= comment.conversation.title
-      %td= normalizar_texto(comment.body, 50)
-      %td= link_to 'Ver', comment
-      %td= link_to 'Editar', edit_comment_path(comment)
-      %td= link_to 'Destruir', comment, confirm: '¿Estas seguro?', method: :delete
-%br/
+      %td= link_to normalizar_texto(comment.body, 50), comment
+      %td
+        .btn-group
+          = link_to 'Editar', edit_comment_path(comment), class: "btn btn-inverse btn-mini"
+          = link_to 'Destruir', comment, confirm: '¿Estas seguro?', method: :delete, class: "btn btn-danger btn-mini"
 %p= will_paginate @comments

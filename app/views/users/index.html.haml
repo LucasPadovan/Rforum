@@ -1,25 +1,23 @@
-%h1
-  #titulo Listado de Usuarios
-%p#notice= notice
-%table
-  %tr
+.label.label-important
+  %h1 Listado de Usuarios
+%hr
+%table.table.table-bordered.table-no-lr-border
+  %tr.label.label-inverse
     %th Username
     %th Email
     %th Puntuacion
     %th Rango
     %th
-    %th
-    %th
   - @users.each do |user|
     %tr
-      %td= link_to user.username, user
+      %td
+        %div= link_to user.username, user
+        = link_to "Enviar mensaje", new_mensajepersonal_url(destinatario_id: user), class: "btn btn-warning btn-mini" unless user == get_usuario
       %td= user.email
       %td= user.puntuacion
       %td= user.rango
       %td
         - if es_administrador
-          = link_to 'Ver', user
-          = link_to 'Editar', edit_user_path(user)
-          = link_to 'Destruir', user, confirm: 'Estas seguro?', method: :delete
-        = link_to "Enviar mensaje", new_mensajepersonal_url(:destinatario_id => user) unless user==get_usuario
-%br/
+          .btn-group
+            = link_to 'Editar', edit_user_path(user), class: "btn btn-inverse btn-mini"
+            = link_to 'Destruir', user, confirm: 'Estas seguro?', method: :delete, class: "btn btn-danger btn-mini"
