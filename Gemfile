@@ -25,7 +25,7 @@ end
 gem 'jquery-rails'
 gem 'authlogic'
 gem 'bbcoder'
-gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 gem 'acts_as_votable'
 gem 'haml'
 gem 'mongrel', '>= 1.2.0.pre2'
