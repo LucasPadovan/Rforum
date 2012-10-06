@@ -3,6 +3,7 @@
 //TODO: ver la logica de padres.
 .label.label-important
   %h1= @board.title
+%hr
 = link_to 'Panel Principal', boards_path
 - unless @father.blank?
   = "|"

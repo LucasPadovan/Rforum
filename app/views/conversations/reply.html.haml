@@ -1,14 +1,14 @@
-%h1
-  #titulo
-    Respuesta para -:#{@conversation.title}:-
+.label.label-important
+  %h1= "Respuesta para -:#{@conversation.title}:-"
+%hr
 = link_to 'Panel Principal', boards_path
 - unless @board.padre == 1
   - board= Board.find(@board.padre)
-  = "&gt;"
+  = " > "
   = link_to board.title, board
-= "&gt;"
+= " > "
 = link_to @board.title, @board
-= "&gt;"
+= " > "
 = link_to @conversation.title, board_conversation_path(board_id: @conversation.board, id: @conversation)
 %br/
 %br/

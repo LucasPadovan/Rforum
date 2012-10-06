@@ -1,5 +1,6 @@
--if notice
-  %p#notice= notice
+- if notice
+  .alert.alert-success
+    %p#notice= notice
 %p
   %b Número de comentario:
   = @comment.id

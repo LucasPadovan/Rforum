@@ -1,8 +1,8 @@
-- if notice
-  .alert.alert-success= notice
 .label.label-important
   %h1 Panel principal
 %hr
+- if notice
+  .alert.alert-success= notice
 %table.table.table-bordered.table-no-lr-border
   - @boards.select{ |b| b.padre == 1 }.each do |board|
     %tr.label.label-inverse= render 'boards/board_table_row', board: board

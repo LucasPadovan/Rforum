@@ -1,6 +1,7 @@
-%h1
-  #titulo Listando las conversaciones
-%table
+.label.label-important
+  %h1 Listando las conversaciones
+%hr
+%table.table
   %tr
     %th Id
     %th Titulo
@@ -23,4 +24,4 @@
     %td/
     %td/
 %br/
-= link_to 'New Conversation', new_board_conversation_path
+= link_to 'New Conversation', new_board_conversation_path, class: 'btn btn-primary'

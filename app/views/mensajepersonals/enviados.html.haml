@@ -1,5 +1,6 @@
 .label.label-important
   %h1= "Mensajes enviados de #{get_usuario.username}"
+%hr
 - if @enviados.exists?
   %br/
   %table.table.table-bordered.table-no-lr-border

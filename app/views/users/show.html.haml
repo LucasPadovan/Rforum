@@ -1,5 +1,6 @@
 - if notice
-  %p#notice= notice
+  .alert.alert-success
+    %p#notice= notice
 %h1
   #titulo
     Perfil de #{@user.username}
@@ -47,7 +48,7 @@
   %b Rango:
   = @user.rango
 - if es_administrador || @user==get_usuario
-  = link_to 'Editar', edit_user_path(@user)
+  = link_to 'Editar', edit_user_path(@user), class: "btn btn-inverse"
   = "|"
 = link_to 'Pagina Principal', homepage_url
 = "|"

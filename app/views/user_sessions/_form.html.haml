@@ -1,0 +1,17 @@
+= form_for(@user_session) do |f|
+  - if @user_session.errors.any?
+    .alert.alert-danger#error_explanation
+      %h3
+        = pluralize(@user_session.errors.count, "error")
+        ha impedido que inicies sesión:
+      %ul
+        - @user_session.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :username, "Nombre de usuario"
+    = f.text_field :username
+  .field
+    = f.label :password, "Contraseña"
+    = f.password_field :password
+  .actions
+    = f.submit value: "Ingresar", class: 'btn btn-primary'

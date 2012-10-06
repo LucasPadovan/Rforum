@@ -1,6 +1,7 @@
 - if get_usuario == @mensajepersonal.remitente || get_usuario == @mensajepersonal.destinatario
   .label.label-important
     %h1 Mensaje
+  %hr
   %p
     De:
     %span.badge.badge-info= @mensajepersonal.remitente.username

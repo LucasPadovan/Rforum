@@ -1,6 +1,6 @@
 = form_for(@comment, url: reply_board_conversation_url(board_id: @board, id: @conversation)) do |f|
   - if @comment.errors.any?
-    #error_explanation
+    .alert.alert-danger#error_explanation
       %h2
         = pluralize(@comment.errors.count, "error")
         prohibited this reply from being saved:
@@ -9,16 +9,16 @@
           %li= msg
   = render 'commons/textarea_tools'
   .field
-    = f.text_area(:body, size: "90x20")
+    = f.text_area :body, class: 'span 8'
   .actions
-    = f.submit(value: "Enviar respuesta")
-  %br/
-  Ultimos comentarios:
+    = f.submit value: "Enviar respuesta", class: 'btn btn-primary'
+.well
+  -#TODO: well de otro color
+  %p.label.label-inverse Ultimos comentarios:
   - @last_comments.each do |com|
-    #foros
+    .well.well-dark
       %strong
         = com.user.username
       dijo:
       = sanitize(sanitizar_bbcode(com.body))
-      %br/
 //TODO: comments.conversarion.last_comments(number) y que busque los ultimos number comentarios de la conversacion y los traiga al revez.

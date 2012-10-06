@@ -1,6 +1,6 @@
 = form_for(@mensajepersonal) do |f|
   - if @mensajepersonal.errors.any?
-    %div#error_explanation
+    .alert.alert-danger%div#error_explanation
       %h2
         = pluralize(@mensajepersonal.errors.count, "error")
         prohibited this mensajepersonal from being saved:
@@ -21,6 +21,6 @@
   = render 'commons/textarea_tools'
   = fields_for(@message) do |m|
     %div.field
-      = m.text_area(:body, :size=>"90x20")
+      = m.text_area :body, class: 'span8'
   %div.actions
-    = f.submit(:value => "Enviar")
+    = f.submit value: "Enviar", class: 'btn btn-primary'

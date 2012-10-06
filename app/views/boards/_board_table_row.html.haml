@@ -32,7 +32,7 @@
     %td Sin comentarios todavia
 %td
   - if es_administrador
-    = link_to 'Edit', edit_board_path(board)
+    = link_to 'Editar', edit_board_path(board), class: "btn btn-inverse btn-mini"
     %br/
-    = link_to 'Destroy', board, confirm: 'Are you sure?', method: :delete
+    = link_to 'Eliminar', board, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger btn-mini"
     %br/

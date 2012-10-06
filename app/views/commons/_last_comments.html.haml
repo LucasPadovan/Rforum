@@ -4,14 +4,12 @@
       %h3 Últimos comentarios:
     %br/
     - Comment.ultimos_comentarios.each do |conversation|
-      %table.table-bordered#lineaUltCom
-        %td
-          - comment = conversation.comments[-1]
-          = link_to(comment.user.username, comment.user)
-          = "dijo: #{normalizar_texto(comment.body, 40)}"
-          %br/
-          En:
-          = link_to( conversation.title, board_conversation_path( board_id: conversation.board, id: conversation ) + conversation.ultima_pagina + "#" + comment.id.to_s )
-          %br/
-          = "Hace #{time_ago_in_words(comment.created_at)}"
-      %br/
+      .well.well-dark
+        - comment = conversation.comments[-1]
+        = link_to(comment.user.username, comment.user)
+        = "dijo: #{normalizar_texto(comment.body, 40)}"
+        %br/
+        En:
+        = link_to( conversation.title, board_conversation_path( board_id: conversation.board, id: conversation ) + conversation.ultima_pagina + "#" + comment.id.to_s )
+        %br/
+        = "Hace #{time_ago_in_words(comment.created_at)}"
