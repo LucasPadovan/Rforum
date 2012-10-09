@@ -1,33 +1,31 @@
-#primercomentario.well
-  .span2
-    %span
-      %a{name: comment.id.to_s}
-    %img{src: comment.user.avatar}
-      %h4= comment.user.username
-      = comment.user.rango
-      %br/
-      Puntuación: #{comment.user.puntuacion}
-      %br/
-      Registrado: #{comment.user.created_at.to_s(:simple)}
-      %br/
-      %br/
-      - unless comment.user == get_usuario
-        = link_to "Enviar mensaje", new_mensajepersonal_path(destinatario_id: comment.user.id), class: 'btn btn-warning btn-mini'
-  .span9.border-left
-    = sanitizar_bbcode(comment.body)
-    %hr
-    #votacion.well.well-dark.pull-right
-      - unless get_usuario.voted_for? comment
-        = link_to '+', votar_encuesta_path(comentario_id: comment), remote: true, class: 'badge badge-success'
-
-        = link_to '-', votar_encuesta_path(comentario_id: comment, negativo: true), remote: true, class: 'badge badge-warning'
-      %span.badge.badge-important{id: "totalVotos#{comment.id.to_s}"}= comment.likes.length - comment.dislikes.length
-    #firmaEnComentario
-      = sanitizar_bbcode(comment.user.firma)
+.span2
+  %span
+    %a{name: comment.id.to_s}
+  %img{src: comment.user.avatar}
+    %h4= comment.user.username
+    = comment.user.rango
     %br/
-    #fecha
-      %h5
-        = "Creado: #{comment.created_at.to_s(:detallada)}"
-        - if es_administrador || comment.user == get_usuario
-          = link_to "Editar", edit_comment_path(comment), class: "btn btn-inverse btn-mini"
-  .clearfix
+    Puntuación: #{comment.user.puntuacion}
+    %br/
+    Registrado: #{comment.user.created_at.to_s(:simple)}
+    %br/
+    %br/
+    - unless comment.user == get_usuario
+      = link_to "Enviar mensaje", new_mensajepersonal_path(destinatario_id: comment.user.id), class: 'btn btn-warning btn-mini'
+.span9.border-left
+  = sanitizar_bbcode(comment.body)
+  %hr
+  .well.well-dark.pull-right
+    - unless get_usuario.voted_for? comment
+      = link_to '+', votar_encuesta_path(comentario_id: comment), remote: true, class: 'badge badge-success'
+
+      = link_to '-', votar_encuesta_path(comentario_id: comment, negativo: true), remote: true, class: 'badge badge-warning'
+    %span.badge.badge-important{id: "totalVotos#{comment.id.to_s}"}= comment.likes.length - comment.dislikes.length
+
+  = sanitizar_bbcode(comment.user.firma)
+  %br/
+  %h5
+    = "Creado: #{comment.created_at.to_s(:detallada)}"
+    - if es_administrador || comment.user == get_usuario
+      = link_to "Editar", edit_comment_path(comment), class: "btn btn-inverse btn-mini"
+.clearfix

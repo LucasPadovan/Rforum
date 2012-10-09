@@ -10,11 +10,9 @@ class Conversation < ActiveRecord::Base
   def ultima_pagina
     numerocomentarios = self.comments.length
     retorno = ""
-    Integer n = 0
     if numerocomentarios > 15
-      n = numerocomentarios%15
-      n += numerocomentarios/15
-      retorno = "?page="+n.to_s
+      n = 1 + numerocomentarios/15
+      retorno = "?page=#{n}"
     else
       retorno
     end

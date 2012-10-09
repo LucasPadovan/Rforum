@@ -14,11 +14,10 @@
 = link_to @conversation.board.title, @conversation.board
 %br/
 %p= will_paginate @otroscomentarios
-= render 'comments/show_comment', comment: @primercomentario
-
+.well.red-border= render 'comments/show_comment', comment: @primercomentario
 - @otroscomentarios.each do |comment|
   - unless comment == @primercomentario
-    = render 'comments/show_comment', comment: comment
+    .well= render 'comments/show_comment', comment: comment
 = link_to 'Responder', reply_board_conversation_url(board_id: @board, id: @conversation), class: "btn btn-primary"
 = "|"
 = link_to  @conversation.board.title, @conversation.board

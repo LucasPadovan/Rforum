@@ -7,7 +7,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   validates :body, :presence => true
 
-  default_scope :order => 'id'
+  #default_scope :order => 'id'
 
   def send_by_email
     Notifier.new_comment(self).deliver

@@ -1,6 +1,6 @@
 = form_for(@mensajepersonal) do |f|
   - if @mensajepersonal.errors.any?
-    .alert.alert-danger%div#error_explanation
+    .alert.alert-danger#error_explanation
       %h2
         = pluralize(@mensajepersonal.errors.count, "error")
         prohibited this mensajepersonal from being saved:

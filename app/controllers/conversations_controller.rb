@@ -17,8 +17,8 @@ class ConversationsController < ApplicationController
   # GET /conversations/1.json
   def show
     @conversation = Conversation.find(params[:id])
-    @primercomentario = @conversation.comments.first
-    @otroscomentarios = @conversation.comments.paginate :page =>params[:page], :order=>'created_at asc', :per_page=>15
+    @primercomentario = @conversation.comments.order(:id).first
+    @otroscomentarios = @conversation.comments.paginate page: params[:page], order: 'created_at asc', per_page: 15
 
     respond_to do |format|
       format.html # show.html.haml

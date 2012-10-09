@@ -54,6 +54,9 @@ html {
   margin: 5px 0 5px 0;
   background-color: #dddddd;
 }
+.red-border {
+  border: 2px #B94A48 solid;
+}
 
 /*h1{*/
     /*color: #ffffff;*/
