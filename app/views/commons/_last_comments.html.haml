@@ -5,7 +5,7 @@
     %br/
     - Comment.ultimos_comentarios.each do |conversation|
       .well.well-dark
-        - comment = conversation.comments[-1]
+        - comment = conversation.comments.order(:id).last
         = link_to(comment.user.username, comment.user)
         = "dijo: #{normalizar_texto(comment.body, 40)}"
         %br/

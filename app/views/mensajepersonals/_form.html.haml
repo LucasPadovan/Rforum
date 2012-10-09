@@ -8,16 +8,16 @@
         - @mensajepersonal.errors.full_messages.each do |msg|
           %li= msg
   Para:
-  = @mensajepersonal.destinatario.username
-  %br
+  %span.badge.badge-info= @mensajepersonal.destinatario.username
   De:
-  = @mensajepersonal.remitente.username
+  %span.badge.badge-info= @mensajepersonal.remitente.username
   = f.hidden_field :remitente_id
   = f.hidden_field :destinatario_id
+  %br/
+  %br/
   %div.field
-    = f.label :titulo
-    %br/
-    = f.text_field :titulo
+    = f.text_field :titulo, placeholder: "Título del mensaje"
+  %br/
   = render 'commons/textarea_tools'
   = fields_for(@message) do |m|
     %div.field
