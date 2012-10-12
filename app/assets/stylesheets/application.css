@@ -57,6 +57,9 @@ html {
 .red-border {
   border: 2px #B94A48 solid;
 }
+.label, .badge {
+  white-space: normal;
+}
 
 /*h1{*/
     /*color: #ffffff;*/
