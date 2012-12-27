@@ -1,0 +1,7 @@
+.modal
+  .modal-header
+  .modal-body
+    - if @comment.likes.any?
+      - @comment.likes.each do |like|
+        = like.voter
+  .modal-footer
