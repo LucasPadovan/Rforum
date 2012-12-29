@@ -2,16 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.3'
 
-group :development do
-  gem 'pg'
-end
-
-group :production do
-  gem 'pg'
-end
-
 group :test do
-  gem 'pg'
   gem 'turn', '0.8.2', :require => false
 end
 
@@ -22,6 +13,10 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'bullet', group: :development
+
+gem 'pg'
 gem 'jquery-rails'
 gem 'authlogic'
 gem 'bbcoder'
