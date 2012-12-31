@@ -2,7 +2,5 @@
   %h1 Editando tu comentario
 %hr
 = render 'form'
-= link_to 'Ver', @comment
-= "|"
 Volver a
 = link_to(@comment.conversation.title, board_conversation_path(board_id: @comment.conversation.board, id: @comment.conversation))

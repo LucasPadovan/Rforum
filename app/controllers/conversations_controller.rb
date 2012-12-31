@@ -16,7 +16,8 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
-    @conversation = Conversation.find(params[:id])
+    #@conversation = Conversation.find(params[:id])
+    @conversation = Conversation.includes(comments: :user).find(params[:id])
     @primercomentario = @conversation.comments.order(:id).first
     @otroscomentarios = @conversation.comments.paginate page: params[:page], order: 'created_at asc', per_page: 15
 
@@ -95,7 +96,6 @@ class ConversationsController < ApplicationController
   def reply
     @conversation = Conversation.find(params[:id])
     @last_comments = Comment.includes(:user).where('conversation_id =?', params[:id]).order('created_at desc').first(10)
-    @comment = @conversation.comments.build
 
     respond_to do |format|
       format.html #reply.html.erb

@@ -18,7 +18,16 @@
 - @otroscomentarios.each do |comment|
   - unless comment == @primercomentario
     .well= render 'comments/show_comment', comment: comment
-= link_to 'Responder', reply_board_conversation_url(board_id: @board, id: @conversation), class: "btn btn-primary"
+= link_to 'Responder', reply_board_conversation_url(board_id: @board, id: @conversation), class: 'btn btn-primary'
 = "|"
 = link_to  @conversation.board.title, @conversation.board
 %p= will_paginate @otroscomentarios
+
+.left-action#left-action
+  %table.tabla#tabla
+    %tr
+      %td#form
+        = render 'reply_form'
+      %td#left-action-toggler
+        .vertical-text
+          Responder

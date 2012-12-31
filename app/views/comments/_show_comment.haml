@@ -12,7 +12,7 @@
     %br/
     - unless comment.user == get_usuario
       = link_to 'Enviar mensaje', new_mensajepersonal_path(destinatario_id: comment.user.id), class: 'btn btn-warning btn-mini'
-.span9.border-left
+.span10.border-left
   = sanitizar_bbcode(comment.body)
   %hr
   .well.well-dark.pull-right
@@ -28,7 +28,7 @@
     - if es_administrador || comment.user == get_usuario
       = link_to 'Editar', edit_comment_path(comment), class: 'btn btn-inverse btn-mini'
     - if comment.likes.any?
-      = link_to_function 'Ver likes', "$('#likes#{comment.id}').slideToggle();"
+      = link_to_function 'Ver likes', "$('#likes#{comment.id}').slideToggle();", class: 'btn btn-mini btn-info'
       %div.hide{id: "likes#{comment.id}"}
         = render 'comments/show_likes', comment: comment
 .clearfix

@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require utils
+//= require bootstrap/bootstrap-modal
 
 $(document).ready(function(){
     $(".bbcode-spoiler-div").hide();
@@ -48,10 +50,6 @@ $(document).ready(function(){
     });
 
 });
-function verificarResolucion(){
-   if (screen.width>1400)
-        switch_style('big')
-}
 
 function insertAtCaret(areaId,text) {
     var txtarea = document.getElementById(areaId);

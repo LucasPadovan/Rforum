@@ -30,4 +30,16 @@ Animanga::Application.configure do
 
   #raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
+
+  #bullet
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    #Bullet.growl = true
+    Bullet.rails_logger = true
+    #Bullet.airbrake = true
+    Bullet.disable_browser_cache = true
+  end
 end

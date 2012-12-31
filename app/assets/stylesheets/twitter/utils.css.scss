@@ -1,0 +1,63 @@
+//menu lateral param respuestsa rápidas
+.left-action {
+  position:fixed;
+  font-weight:normal;
+  left:-520px;
+  top:25%;
+  z-index:1;
+  opacity: 0.9;
+}
+.left-action td{
+  padding: 10px;
+}
+.left-action form{
+  width: 500px;
+  opacity: 1;  }
+
+#form {
+  opacity: 0;
+}
+.tabla{
+  background-color: #363030;
+  font-family: helvetica;
+  font-size:11pt;
+  -moz-border-radius-topright:10px;
+  -moz-border-radius-bottomright:10px;
+  -webkit-border-top-right-radius:10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-top-right-radius:10px;
+  border-bottom-right-radius:10px;
+}
+#left-action-toggler{
+  font-family: helvetica;
+  font-size: 15px;
+  font-weight: bold;
+  width: 25px;
+}
+.vertical-text {
+  color: white;
+  width: 25px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+}
+
+//spoilers
+fieldset.bbcode-spoiler {
+  border: 1px solid #E5E5E5;
+  padding: 8px;
+  line-height: 24px;
+  display: block;
+}
+legend.bbcode-spoiler-legend {
+  width: 65px;
+  padding: 5px;
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-top: 0px;
+}
+
+//limitadores de tamaño de cosas
+.span10 img {
+  max-height: 700px;
+  max-width: 70%;
+}
