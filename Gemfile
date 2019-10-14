@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.17'
 
 group :test do
   gem 'turn', '0.8.2', :require => false
